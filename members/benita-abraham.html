@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../index.css" />
 
     <style>
@@ -39,6 +43,30 @@
       .profile-info {
         max-width: 600px;
         margin: 0 auto;
+      }
+      .profile-info .table {
+        border: 3px solid #ff99cc; /* Thicker darker pink border */
+      }
+      .profile-info .table td {
+        border: 2px solid #ff99cc; /* Thicker darker pink cell borders */
+      }
+      body {
+        background-color: #ffe6e6; /* Light pink background */
+        font-family: 'Outfit', sans-serif; /* Previous font for body text */
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Dancing Script', cursive; /* Cursive font for headings */
+      }
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .profile-img:hover {
+        animation: bounce 0.5s infinite;
       }
     </style>
   </head>
@@ -86,17 +114,41 @@
     <div class="container profile-section">
       <img
         src="../assets/img/benita-abraham.JPEG"
+        style="transition: transform 0.3s;"
+        onmouseover="this.style.transform='scale(1.1)';"
+        onmouseout="this.style.transform='scale(1)';"
         class="profile-img rounded-circle shadow"
         alt="Member Name"
       />
       <h1 class="fw-bold">Benita Abraham</h1>
       <div class="profile-info">
-        <p class="text-muted"><strong>Year:</strong> Senior</p>
-        <p class="text-muted"><strong>Major:</strong> Computer Science</p>
-        <p class="text-muted"><strong>Concentration:</strong> Data Science</p>
-        <p class="text-muted"><strong>Minors:</strong> Business Administration, Spanish, Mathematics</p>
+        <table class="table table-borderless text-center">
+          <tbody>
+            <tr>
+              <td><strong>Year:</strong></td>
+              <td>Senior</td>
+            </tr>
+            <tr>
+              <td><strong>Major:</strong></td>
+              <td>Computer Science</td>
+            </tr>
+            <tr>
+              <td><strong>Concentration:</strong></td>
+              <td>Data Science</td>
+            </tr>
+            <tr>
+              <td><strong>Minors:</strong></td>
+              <td>Business Administration, Spanish, Mathematics</td>
+            </tr>
+          </tbody>
+        </table>
         <p class="mt-3">
           Hello! I love CS+SG!
+        </p>
+        <p class="mt-3">
+          I am passionate about using technology to solve real-world problems and make a positive impact on society. 
+          In my free time, I enjoy exploring new programming languages, working on data science projects, and mentoring 
+          fellow students. I am also an avid reader and love learning about different cultures and languages.
         </p>
       </div>
     </div>

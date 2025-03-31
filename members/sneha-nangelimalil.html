@@ -10,6 +10,8 @@
     />
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
       .nav-container,
       .footer-container {
@@ -33,9 +35,40 @@
         max-width: 600px;
         margin: 0 auto;
       }
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        background-color: #C7B8EA; /* Lavender background */
+      }
+      h1, h2, h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+      }
+
+      .moving-element {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: move 5s infinite;
+      }
+      @keyframes move {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
     </style>
   </head>
-  <body>
+  <body style="background-color: #C7B8EA;">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container nav-container">
@@ -76,7 +109,7 @@
     </nav>
 
     <!-- Profile Section -->
-    <div class="container profile-section">
+    <div class="moving-element" class="container profile-section">
       <img
         src="../assets/img/sneha-nangelimalil.jpg"
         class="profile-img rounded-circle shadow"
