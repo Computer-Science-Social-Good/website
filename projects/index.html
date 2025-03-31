@@ -9,23 +9,19 @@
       rel="stylesheet"
     />
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../index.css" />
 
     <style>
-      .nav-container,
-      .footer-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .projects-section {
-        height: 100vh;
-        max-width: 95%;
-        width: 800px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+      .card-img-top {
+        height: 300px;
+        object-fit: cover;
+        object-position: center;
       }
     </style>
   </head>
@@ -34,7 +30,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container nav-container">
         <a class="navbar-brand" href="../index.html">
-          <strong><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo" /></strong>
+          <strong
+            ><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
+          /></strong>
         </a>
         <button
           class="navbar-toggler"
@@ -53,10 +51,14 @@
               <a class="nav-link mx-4" href="../about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4 active" href="../projects/index.html">Our Projects</a>
+              <a class="nav-link mx-4 active" href="../projects/index.html"
+                >Our Projects</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4" href="../members/index.html">Our Members</a>
+              <a class="nav-link mx-4" href="../members/index.html"
+                >Our Members</a
+              >
             </li>
           </ul>
         </div>
@@ -64,17 +66,78 @@
     </nav>
 
     <!-- Projects Section -->
-    <div class="container projects-section">
-      <h1 class="fw-bold">Our Projects</h1>
-      <p class="lead">
-        We'll update this page soon with our exciting projects. Stay tuned!
+    <div class="container my-5 py-5">
+      <h1 class="text-center mb-4">Our Projects</h1>
+      <p class="lead text-center mb-4">
+        Check out the exciting projects we've worked on throughout the semester!
       </p>
+
+      <!-- Album Section -->
+      <div class="album p-4 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <!-- Family Coding Night -->
+            <div class="col">
+              <div class="card shadow-sm">
+                <img
+                  src="https://i.imgur.com/wNtzO4p.png"
+                  class="bd-placeholder-img card-img-top"
+                  alt="Family Coding Night"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Family Coding Night</h5>
+                  <p class="card-text fst-italic">March 26, 2025</p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <a
+                        href="./s25/family-coding-night.html"
+                        class="btn btn-sm btn-outline-secondary"
+                        >View</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Binary Bracelets -->
+            <div class="col">
+              <div class="card shadow-sm">
+                <img
+                  src="https://i.imgur.com/wUNxeic.png"
+                  class="bd-placeholder-img card-img-top"
+                  alt="Binary Bracelet"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Binary Bracelets</h5>
+                  <p class="card-text fst-italic">March 10, 2025</p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <a
+                        href="./s25/binary-bracelets.html"
+                        class="btn btn-sm btn-outline-secondary"
+                        >View</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-light py-3 fixed-bottom">
-      <div class="container footer-container">
-        <p class="mb-0">&copy; Developed by CS + Social Good @ University of Delaware</p>
+      <div class="container footer-container text-center">
+        <p class="mb-0">
+          &copy; Developed by CS + Social Good @ University of Delaware
+        </p>
       </div>
     </footer>
 
