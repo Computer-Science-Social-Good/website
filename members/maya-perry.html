@@ -16,8 +16,144 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../index.css" />
+    <!-- <script src="script.js">
+      // Easter egg hunt JavaScript
+// script.js
+import detectStore from './detectStore';
 
+console.log('JavaScript code is being loaded');
+
+const eggs = document.querySelectorAll('.egg');
+
+eggs.forEach((egg) => {
+  console.log(`Adding click event listener to egg ${egg.id}`);
+  egg.addEventListener('click', () => {
+    console.log(`Egg ${egg.id} was clicked`);
+    const prize = getPrize(egg.id);
+    console.log(`Prize for egg ${egg.id} is: ${prize}`);
+    alert(`Congratulations! You found egg ${egg.id}! Your prize is: ${prize}`);
+  });
+});
+
+function getPrize(eggId) {
+  console.log(`Getting prize for egg ${eggId}`);
+  const prizes = {
+    egg1: 'A virtual chocolate bunny!',
+    egg2: 'A free virtual hug!',
+    egg3: 'A virtual Easter basket filled with goodies!',
+    egg4: 'A virtual Easter egg hunt trophy!',
+    egg5: 'A virtual Easter surprise!',
+  };
+  return prizes[eggId];
+}
+
+const store = detectStore();
+
+</script> -->
     <style>
+      body {
+  background-color: #f0f0f0; /* light gray background */
+/*  overflow: hidden; hide scrollbar */
+}
+
+.unicorn {
+  position: absolute;
+  width: 100px;
+  height: 150px; /* make the unicorns taller */
+  background-color: #fff; /* white unicorn body */
+  border-radius: 20px; /* make the unicorns less circular */
+  animation: dance 2s infinite;
+}
+
+.unicorn::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2c464; /* yellow unicorn mane */
+  border-radius: 50%;
+}
+
+.unicorn::after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2c464; /* yellow unicorn tail */
+  border-radius: 50%;
+}
+
+.unicorn-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #fff; /* white unicorn head */
+  border-radius: 50%;
+}
+
+.unicorn-horn {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 30px;
+  background-color: #f2c464; /* yellow unicorn horn */
+  border-radius: 50%;
+}
+
+@keyframes dance {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(20px) rotate(30deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+/* create multiple unicorns with different positions and animations */
+
+.unicorn1 {
+  top: 100px;
+  left: 100px;
+  animation-delay: 0s;
+  background-color: #ff69b4; /* pink unicorn */
+
+}
+
+.unicorn2 {
+  top: 300px;
+  left: 500px;
+  animation-delay: 0.5s;
+  background-color: #34a85a; /* green unicorn */
+
+}
+
+.unicorn3 {
+  top: 500px;
+  left: 100px;
+  animation-delay: 1s;
+  background-color: #6495ed; /* blue unicorn */
+
+}
+
+.unicorn4 {
+  top: 700px;
+  left: 500px;
+  animation-delay: 1.5s;
+  background-color: #ffd700; /* yellow unicorn */
+
+}
       .nav-container,
       .footer-container,
       .page-container {
@@ -61,6 +197,26 @@
         grid-row: 1;
         grid-column: 1 / span 3;
       }
+      /* Easter egg hunt CSS */
+.easter-egg-hunt {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.egg {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/718smiley.svg/2048px-718smiley.svg.png');
+  background-size: 50px 50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+}
     </style>
   </head>
   <body>
@@ -105,6 +261,22 @@
 
     <!-- Profile Section -->
      <div class="page-container">
+              <!-- Easter egg hunt HTML -->
+              <div class="egg" id="egg1" style="top: 100px; left: 200px;">
+                <img src="egg.png" alt="Egg" width="50" height="50">
+              </div>
+              <div class="egg" id="egg2" style="top: 300px; left: 500px;">
+                <img src="egg.png" alt="Egg" width="50" height="50">
+              </div>
+              <div class="egg" id="egg3" style="top: 500px; left: 100px;">
+                <img src="egg.png" alt="Egg" width="50" height="50">
+              </div>
+              <div class="egg" id="egg4" style="top: 700px; left: 300px;">
+                <img src="egg.png" alt="Egg" width="50" height="50">
+              </div>
+              <div class="egg" id="egg5" style="top: 900px; left: 600px;">
+                <img src="egg.png" alt="Egg" width="50" height="50">
+              </div>
       <div class="container profile-section">
         <img
           src="..\assets\img\MayaPerry_CSSGImage.jpeg"
@@ -120,7 +292,28 @@
           </p>
         </div>
       </div>
+      <div class="unicorn unicorn1">
+        <div class="unicorn-head">
+          <div class="unicorn-horn"></div>
+        </div>
+      </div>
+      <div class="unicorn unicorn2">
+        <div class="unicorn-head">
+          <div class="unicorn-horn"></div>
+        </div>
+      </div>
+      <div class="unicorn unicorn3">
+        <div class="unicorn-head">
+          <div class="unicorn-horn"></div>
+        </div>
+      </div>
+      <div class="unicorn unicorn4">
+        <div class="unicorn-head">
+          <div class="unicorn-horn"></div>
+        </div>
+      </div>
       <div class="container gallery-section">
+
         <h1 id="gallery-head">Check out the other members of CS+SG/Tea++/Cookies?</h1>
         <img src="../assets/img/logo.svg" class="gallery" height="20" alt="CS+SG Logo">
         <img

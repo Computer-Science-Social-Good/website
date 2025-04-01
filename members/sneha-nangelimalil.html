@@ -47,6 +47,25 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
       }
+
+      .moving-element {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: move 5s infinite;
+      }
+      @keyframes move {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body style="background-color: #C7B8EA;">
@@ -90,7 +109,7 @@
     </nav>
 
     <!-- Profile Section -->
-    <div class="container profile-section">
+    <div class="moving-element" class="container profile-section">
       <img
         src="../assets/img/sneha-nangelimalil.jpg"
         class="profile-img rounded-circle shadow"
