@@ -42,17 +42,39 @@
       }
       
 body {
-  background-color: #FFC5C5; /* light pink */
-  overflow: hidden;
-}
+  background-color: #FFC5C5; /* light pink */ 
+  overflow: hidden; <body>
+  <div id="sparkle-container"></div>
+  <script>
+    const sparkleContainer = document.getElementById("sparkle-container");
 
-.sparkle {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #FFFFFF; /* white */
-  animation: sparkle 2s infinite;
+    function createSparkle() {
+      const sparkle = document.createElement("div");
+      sparkle.style.position = "absolute";
+      sparkle.style.width = "20px";
+      sparkle.style.height = "20px";
+      sparkle.style.background = "white";
+      sparkle.style.borderRadius = "50%";
+      sparkle.style.animation = "sparkle 2s infinite";
+      sparkleContainer.appendChild(sparkle);
+    }
+
+    function animateSparkles() {
+      requestAnimationFrame(animateSparkles);
+      const sparkles = sparkleContainer.children;
+      for (let i = 0; i < sparkles.length; i++) {
+        const sparkle = sparkles[i];
+        sparkle.style.transform = `scale(${Math.random() * 2})`;
+        sparkle.style.opacity = `${Math.random() * 1}`;
+      }
+    }
+
+    animateSparkles();
+  </script>
+</body> <body>
+  <div class="sparkle"></div>
+</body>
+}
 }
 
 @keyframes sparkle {
@@ -110,16 +132,16 @@ body {
     <!-- Profile Section -->
     <div class="container profile-section">
       <img
-        src="../assets/img/Kaylyn Lim.jpeg" 
+        src="../assets/img/kaylyn-lim.jpeg"
         class="profile-img rounded-circle shadow"
         alt="Member Name"
       />
-      <h1 class="fw-bold">chalupalord27</h1>
+      <h1 class="fw-bold">Kaylyn Lim (chalupalord27)</h1>
       <div class="profile-info">
         <p class="text-muted"><strong>Year:</strong> Junior</p>
-        <p class="text-muted"><strong>Major:</strong> Public Policy</p>
+        <p class="text-muted"><strong>Major:</strong> Public Policy</p><strong>Minors:</strong> Military Leadership & Public Health</p>
         <p class="mt-3">
-          Hi! I'm a junior at the University of Delaware majoring in Public Policy. I am passionate about using technology to solve social issues and improve people's lives. I love working with data and finding innovative solutions to complex problems. In my free time, I enjoy hiking, reading, and exploring new places.
+          Hi!! Welcome to my amazing, awesome, dope, hip, epic, perplexing, breathtaking page! I'm currently a junior at UD majoring in Public Policy with minors in Military Leadership & Public Health. I am here because I am trying to expand my computer science skill sets (yay). A fun fact about me is that I am ambidextrous and my hobbies include thrifting, hiking, traveling, and cooking! Oh, I also love Wing Stop (their elote corn is so good!), weiner dogs, and love to collect trinkets as well. 
         </p>
       </div>
     </div>
