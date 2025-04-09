@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Member Profile</title>
+    <title> 🩷 Kaylyn Lim </title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,14 +24,17 @@
     <link rel="stylesheet" href="../index.css" />
 
     <style>
+      /* Base Styles */
       body {
         margin: 0;
         font-family: "Outfit", sans-serif;
-        background-color: #FFC5C5; /* light pink */
+        background-color: #ffc5c5; /* light pink */
         position: relative;
         overflow-x: hidden;
+        padding-bottom: 100px; /* extra space for fixed footer */
       }
 
+      /* Sparkle Background */
       .sparkle-background {
         position: fixed;
         top: 0;
@@ -41,16 +44,12 @@
         pointer-events: none;
         z-index: 0;
       }
-
       .sparkle {
         position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: #fff;
         border-radius: 50%;
-        animation: sparkle 2s infinite;
+        animation: sparkle 2s infinite ease-in-out;
+        box-shadow: 0 0 10px #ffd1dc;
       }
-
       @keyframes sparkle {
         0% {
           transform: scale(1);
@@ -62,47 +61,105 @@
         }
       }
 
+      /* Navbar */
       .nav-container,
       .footer-container {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-
-      .profile-section {
+      .navbar-light .navbar-nav .nav-link {
+        transition: all 0.3s ease-in-out;
         position: relative;
-        padding-top: 100px;
-        padding-bottom: 60px;
-        text-align: center;
-        z-index: 1;
+      }
+      .navbar-light .navbar-nav .nav-link:hover {
+        color: #ff69b4 !important;
+        transform: scale(1.1);
       }
 
+      /* Content Row */
+      .content-row {
+        margin-top: 100px; /* leave space for fixed navbar */
+      }
+
+      /* Profile Section */
+      .profile-section {
+        text-align: center;
+        padding: 20px;
+      }
       .profile-img {
         width: 200px;
         height: 200px;
         object-fit: cover;
         border-radius: 50%;
+        border: 5px solid #ffe6ec;
+        box-shadow: 0 0 20px #ffb6c1;
         margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+      .profile-img:hover {
+        transform: rotate(-3deg) scale(1.05);
+      }
+      .profile-info {
+        background: #fff8fa;
+        border-radius: 25px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+        border: 2px dashed #ffb6c1;
+      }
+      /* Surprise Button Styling */
+      .surprise-btn {
+        background-color: #ff69b4;
+        border-color: #ff69b4;
+        color: white;
+        margin-top: 20px;
+      }
+      .surprise-btn:hover {
+        background-color: #ff85c1;
+        border-color: #ff85c1;
       }
 
-      .profile-info {
-        max-width: 600px;
-        margin: 0 auto;
+      /* Footer */
+      footer {
+        background-color: #fff0f5;
+        font-weight: 500;
+        color: #d63384;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      /* Flying Hearts on Click */
+      .flying-heart {
+        position: absolute;
+        font-size: 24px;
+        pointer-events: none;
+        animation: flyUp 2s ease-out forwards;
+      }
+      @keyframes flyUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) scale(1.5);
+          opacity: 0;
+        }
       }
     </style>
   </head>
-
   <body>
-    <!-- Sparkle background -->
+    <!-- Sparkle Background -->
     <div class="sparkle-background"></div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container nav-container">
-        <a class="navbar-brand" href="../index.html">
-          <strong
-            ><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
-          /></strong>
+        <a class="navbar-brand" href="../index.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Go back home!">
+          <strong>
+            <img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo" />
+          </strong>
         </a>
         <button
           class="navbar-toggler"
@@ -118,77 +175,105 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link mx-4" href="../about.html">About Us</a>
+              <a class="nav-link mx-4" href="../about.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Learn About Us!">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4" href="../projects/index.html"
-                >Our Projects</a
-              >
+              <a class="nav-link mx-4" href="../projects/index.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See our Projects!">Our Projects</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-4 active" href="../members/index.html"
-                >Our Members</a
-              >
+              <a class="nav-link mx-4 active" href="../members/index.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Meet our Members!">Our Members</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Profile Section -->
-    <div class="container profile-section">
-      <img
-        src="../assets/img/kaylyn-lim.jpg"
-        class="profile-img rounded-circle shadow"
-        alt="Member Name"
-      />
-      <h1 class="fw-bold">Kaylyn Lim (chalupalord27)</h1>
-      <div class="profile-info">
-        <p class="text-muted"><strong>Year:</strong> Junior</p>
-        <p class="text-muted">
-          <strong>Major:</strong> Public Policy<br />
-          <strong>Minors:</strong> Military Leadership & Public Health
-        </p>
-        <p class="mt-3">
-          Hi!! Welcome to my amazing, awesome, dope, hip, epic, perplexing,
-          breathtaking page! I'm currently a junior at UD majoring in Public
-          Policy with minors in Military Leadership & Public Health. I am here
-          because I am trying to expand my computer science skill sets (yay). A
-          fun fact about me is that I am ambidextrous and my hobbies include
-          thrifting, hiking, traveling, and cooking! Oh, I also love Wing Stop
-          (their elote corn is so good!), weiner dogs, and love to collect
-          trinkets as well.
-        </p>
+    <!-- Content Row: Profile Bio -->
+    <div class="container content-row">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="profile-section">
+            <img
+              src="../assets/img/kaylyn-lim.jpg"
+              class="profile-img rounded-circle shadow"
+              alt="Kaylyn Lim smiling"
+            />
+            <h1 class="fw-bold">Kaylyn Lim</h1>
+            <div class="profile-info">
+              <p class="text-muted"><strong>Year:</strong> Junior</p>
+              <p class="text-muted">
+                <strong>Major:</strong> Public Policy<br />
+                <strong>Minors:</strong> Military Leadership &amp; Public Health
+              </p>
+              <p class="mt-3">
+                Welcome to my amazing, dope, hip, epic, perplexing, and breathtaking page!
+                I'm currently a junior at UD majoring in Public Policy with minors in
+                Military Leadership &amp; Public Health.
+                I am here to expand my computer science skills and am also the social media coordinator! (Follow @ud_cssg on Instagram for updates)! 🤓<br>
+                Fun facts: I am in Army ROTC 🪖 and I am ambidextrous 🤹‍♀️, I love thrifting 👗, hiking 🥾, traveling 🌍,
+                and cooking 🍳. Also – obsessed with Wing Stop (especially their elote corn) 🌽 and weiner dogs 🐶. <br> Thanks for visiting my page and make sure to try the surprise button! 😎
+              </p>
+            </div>
+            <!-- Surprise Me Button (Centered) -->
+            <div class="text-center">
+              <button id="surpriseBtn" class="btn surprise-btn">Surprise Me!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliment Modal -->
+    <div class="modal fade" id="complimentModal" tabindex="-1" aria-labelledby="complimentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="complimentModalLabel">you're welcome hehe</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="complimentContent">
+            <!-- Compliment text will be injected via JavaScript -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Awesome!</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light py-3 fixed-bottom">
+    <footer class="py-3 fixed-bottom">
       <div class="container footer-container">
         <p class="mb-0">
-          &copy; Developed by CS + Social Good @ University of Delaware
+          &copy; Developed with 💕 by CS + Social Good @ University of Delaware
         </p>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      const sparkleBackground = document.querySelector(".sparkle-background");
+      // Initialize Bootstrap Tooltips
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
 
+      // Sparkle Animation
+      const sparkleBackground = document.querySelector(".sparkle-background");
       function createSparkle() {
+        if (sparkleBackground.children.length > 80) return;
         const sparkle = document.createElement("div");
         sparkle.classList.add("sparkle");
         sparkle.style.top = `${Math.random() * 100}%`;
         sparkle.style.left = `${Math.random() * 100}%`;
+        const size = Math.random() * 8 + 5;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 90%)`;
         sparkleBackground.appendChild(sparkle);
-
-        // Remove sparkles after animation completes
-        setTimeout(() => {
-          sparkle.remove();
-        }, 2000);
+        setTimeout(() => sparkle.remove(), 2000);
       }
-
       function animateSparkles() {
         requestAnimationFrame(animateSparkles);
         const sparkles = sparkleBackground.children;
@@ -198,8 +283,62 @@
           sparkle.style.opacity = `${Math.random()}`;
         }
       }
-
       animateSparkles();
       setInterval(createSparkle, 100);
+
+      // Animated Flying Hearts on Click
+      document.addEventListener("click", function (e) {
+        const heart = document.createElement("div");
+        heart.classList.add("flying-heart");
+        heart.innerText = "🩷";
+        heart.style.left = e.pageX + "px";
+        heart.style.top = e.pageY + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      });
+
+      // Compliment Modal & Confetti for "Surprise Me!" Button
+      const surpriseBtn = document.getElementById("surpriseBtn");
+      const complimentContent = document.getElementById("complimentContent");
+      const complimentModal = new bootstrap.Modal(document.getElementById("complimentModal"));
+      const compliments = [
+        "If you and I were socks, we'd make a great pair 😏",
+        "What's cookin good lookin 😏",
+        "If you were words on a page, you'd be fine print 😏",
+        "What kills two butts and kills people... an assassin 😏",
+        "You're so pretty... pretty UGLY 😏",
+        "If you were a vegetable, you'd be a cute-cumber 😏",
+        "You're so funny... funny LOOKING 😏"
+      ];
+      surpriseBtn.addEventListener("click", function() {
+        const randomIndex = Math.floor(Math.random() * compliments.length);
+        complimentContent.textContent = compliments[randomIndex];
+        triggerConfetti();
+        complimentModal.show();
+      });
+
+      // Confetti Animation Function
+      function triggerConfetti() {
+        for (let i = 0; i < 30; i++) {
+          let confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.style.width = "8px";
+          confetti.style.height = "8px";
+          confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+          confetti.style.position = "absolute";
+          confetti.style.top = `${Math.random() * 100}%`;
+          confetti.style.left = `${Math.random() * 100}%`;
+          confetti.style.opacity = Math.random();
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+          confetti.style.transition = "transform 3s ease-out, opacity 3s ease-out";
+          document.body.appendChild(confetti);
+          setTimeout(() => {
+            confetti.style.transform = `translateY(200px) rotate(${Math.random() * 360}deg)`;
+            confetti.style.opacity = 0;
+          }, 50);
+          setTimeout(() => confetti.remove(), 3000);
+        }
+      }
     </script>
-  </body
+  </body>
+</html>
