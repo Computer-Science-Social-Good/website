@@ -19,23 +19,39 @@
 
     <style>
       body {
-        background: linear-gradient(to bottom, #add8e6, #87ceeb, #4682b4);
-        background-size: 100% 300px;
-        background-position: 0% 100%;
-        animation: moveGradient 10s ease infinite;
+        background: linear-gradient(
+          to bottom,
+          #add8e6,
+          #add8e6,
+          #a8e9dd,
+          #a8e9dd,
+          #a8e9dd,
+          #add8e6,
+          #add8e6
+        );
+        background-size: 100% 700%; /* taller gradient area */
+        animation: scrollGradient 20s linear infinite;
+      }
+      h3 {
+        margin-bottom: 15px;
+      }
+      p {
+        margin: 5px;
       }
 
-      @keyframes moveGradient {
+      .profile-img:hover {
+        cursor: pointer;
+      }
+
+      @keyframes scrollGradient {
         0% {
-          background-position: 0% 100%;
-        }
-        50% {
           background-position: 0% 0%;
         }
         100% {
           background-position: 0% 100%;
         }
       }
+
       .nav-container,
       .footer-container {
         display: flex;
@@ -48,15 +64,124 @@
         text-align: center;
       }
       .profile-img {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
+        box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
         object-fit: cover;
-        border-radius: 50%;
         margin-bottom: 20px;
       }
       .profile-info {
         max-width: 600px;
         margin: 0 auto;
+      }
+      .profile-img {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      .profile-img.visible {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .glow-img {
+        border: 3px solid black;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(70, 130, 180, 0.6),
+          0 0 30px rgba(70, 130, 180, 0.4), 0 0 45px rgba(70, 130, 180, 0.2);
+        transition: box-shadow 0.3s ease-in-out;
+      }
+
+      .shine-wrapper {
+        position: relative;
+        display: inline-block;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .shine-wrapper::before {
+        position: absolute;
+        top: 0;
+        left: -75%;
+        z-index: 2;
+        display: block;
+        content: "";
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 100%
+        );
+        transform: skewX(-25deg);
+        cursor: pointer;
+      }
+
+      .shine-wrapper.animate-shine::before {
+        animation: shine 1s;
+      }
+
+      @keyframes shine {
+        100% {
+          left: 125%;
+        }
+      }
+
+      .emoji-section {
+        max-width: 300px;
+        margin-top: -50px;
+      }
+      .content-section {
+        max-width: 550px;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .emoji {
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+      }
+      .emoji:hover {
+        transform: scale(1.3);
+        transition: transform 0.2s ease-in-out;
+      }
+      .emoji.active {
+        transform: scale(1.3);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .carousel-text-container {
+        position: relative;
+        height: 40px;
+        font-size: 30px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .carousel-text {
+        position: absolute;
+        opacity: 0;
+        transform: rotateX(90deg);
+        transition: all 0.8s ease;
+        font-size: 1.2rem;
+      }
+
+      .carousel-text.active {
+        opacity: 1;
+        transform: rotateX(0deg);
       }
     </style>
   </head>
@@ -101,46 +226,76 @@
     </nav>
 
     <!-- Profile Section -->
-    <div class="container profile-section">
-      <img
-        src="../assets/img/aman-singh.png"
-        class="profile-img rounded-circle shadow"
-        alt="Aman Singh"
-        style="
-          border: 10px solid #ffd700;
-          border-radius: 50% / 40%;
-          border-style: solid;
-        "
-      />
-      <h1 class="fw-bold">Aman Singh</h1>
-      <div class="profile-info">
-        <style>
-          .profile-table {
-            font-size: 1.5rem;
-            border-collapse: separate;
-            border-spacing: 0.5rem;
-          }
-          .profile-table,
-          .profile-table td,
-          .profile-table th {
-            border: 0.25rem solid #4682b4;
-          }
-          .profile-table td,
-          .profile-table th {
-            padding: 0.5rem;
-          }
-        </style>
-        <table class="profile-table mx-auto">
-          <tr>
-            <th>Year</th>
-            <td>2025</td>
-          </tr>
-          <tr>
-            <th>Major</th>
-            <td>Computer Science</td>
-          </tr>
-        </table>
-        <p class="mt-3">Hello I am Aman! This is my personal webpage!</p>
+    <div class="container profile-section d-flex justify-content-center">
+      <div class="shine-wrapper">
+        <img
+          src="https://i.imgur.com/MgYeAMF.jpeg"
+          class="profile-img shadow glow-img"
+          alt="Aman Singh"
+        />
+      </div>
+    </div>
+
+    <div class="container emoji-section">
+      <div class="d-flex justify-content-between">
+        <div class="emoji" style="font-size: 30px" data-type="wave">👋</div>
+        <div class="emoji" style="font-size: 30px" data-type="code">💻</div>
+        <div class="emoji" style="font-size: 30px" data-type="art">🎨</div>
+        <div class="emoji" style="font-size: 30px" data-type="more">👹</div>
+      </div>
+    </div>
+
+    <div class="container content-section" id="content">
+      <div id="wave" class="content-block fade-in active-content">
+        <h3>Welcome!</h3>
+        <p>I'm Aman. Professional ChatGPTer, amateur programmer.</p>
+        <p>Click through the emojis to see more about me 👆</p>
+        <p>Or click the photo to see another pic of me holding something 🔀</p>
+      </div>
+
+      <div id="code" class="content-block fade-in" style="display: none">
+        <h3>Code Stuff 🧑🏽‍💻</h3>
+        <p>
+          This is a CS+SG page so I should probably include some of my code.
+        </p>
+        <p>
+          My favorite languages are Python and React. I code in those languages.
+        </p>
+        <p>
+          <!-- TODO - link my railway projects! -->
+          <a href="https://github.com/amansjot" target="_blank"
+            >https://github.com/amansjot</a
+          >
+        </p>
+      </div>
+
+      <div id="art" class="content-block fade-in" style="display: none">
+        <h3>When I'm not coding you can find me...</h3>
+        <div class="carousel-text-container">
+          <div class="carousel-text active">Napping. Always napping 💤</div>
+          <div class="carousel-text">Sipping my Brita bottle 🍼</div>
+          <div class="carousel-text">Tutoring at an ungodly hour 🧑🏽‍💻</div>
+          <div class="carousel-text">Coaxing ChatGPT into solving</div>
+          <div class="carousel-text">Longboarding till I get lost 🛹</div>
+          <div class="carousel-text">Pretending to study in Daugherty 🧠</div>
+          <div class="carousel-text">Complaining about being tired 🥱</div>
+          <div class="carousel-text">Swimming (and failing butterfly) 🤿</div>
+          <div class="carousel-text">Reading till I zzz 📚</div>
+        </div>
+      </div>
+
+      <div id="more" class="content-block fade-in" style="display: none">
+        <h3>More Random Facts</h3>
+        <div class="carousel-text-container" id="more-carousel">
+          <div class="carousel-text active">
+            I always have an extra snack on me 🍫
+          </div>
+          <div class="carousel-text">I'm a Friends addict ask me anything</div>
+          <div class="carousel-text">I love puzzles any kind of puzzles 🧩</div>
+          <div class="carousel-text active">I'm a lefty ✍🏽</div>
+          <div class="carousel-text">I'm a huge geography nerd 🌏</div>
+          <div class="carousel-text">I listen to music sometimes 🎵</div>
+        </div>
       </div>
     </div>
 
@@ -152,6 +307,115 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      const emojis = document.querySelectorAll(".emoji");
+      const contentBlocks = document.querySelectorAll(".content-block");
+
+      // Text carousel helpers
+      let artInterval;
+      const artItems = document.querySelectorAll("#art .carousel-text");
+
+      let moreInterval;
+      const moreItems = document.querySelectorAll(
+        "#more-carousel .carousel-text"
+      );
+
+      function startCarousel(items, currentInterval) {
+        clearInterval(currentInterval);
+
+        // Pick a random starting index
+        let index = Math.floor(Math.random() * items.length);
+
+        // Set all to inactive
+        items.forEach((item) => item.classList.remove("active"));
+        items[index].classList.add("active");
+
+        // Start interval from random point
+        const newInterval = setInterval(() => {
+          items[index].classList.remove("active");
+          index = (index + 1) % items.length;
+          items[index].classList.add("active");
+        }, 3000);
+
+        return newInterval;
+      }
+
+      emojis.forEach((emoji) => {
+        emoji.addEventListener("click", () => {
+          const type = emoji.getAttribute("data-type");
+
+          // Remove 'active' from all emojis
+          emojis.forEach((e) => e.classList.remove("active"));
+          emoji.classList.add("active");
+
+          // Hide all content blocks
+          contentBlocks.forEach((block) => {
+            block.style.display = "none";
+            block.classList.remove("active-content");
+          });
+
+          // Show the selected block
+          const selectedBlock = document.getElementById(type);
+          selectedBlock.style.display = "block";
+          selectedBlock.classList.add("active-content", "fade-in");
+
+          // Randomize and restart carousels
+          if (type === "art") {
+            artInterval = startCarousel(artItems, artInterval);
+          }
+          if (type === "more") {
+            moreInterval = startCarousel(moreItems, moreInterval);
+          }
+        });
+      });
+
+      // Initialize first emoji and content
+      document
+        .querySelector(".emoji[data-type='wave']")
+        .classList.add("active");
+      document.getElementById("wave").style.display = "block";
+
+      // Start hidden carousels to prep them
+      artInterval = startCarousel(artItems, artInterval);
+      moreInterval = startCarousel(moreItems, moreInterval);
+
+      // Change the image on click
+      const profileImg = document.querySelector(".profile-img");
+
+      const imageUrls = [
+        "https://i.imgur.com/MgYeAMF.jpeg",
+        "https://i.imgur.com/Prim6X6.jpeg",
+        "https://i.imgur.com/h1jFPFN.jpeg",
+        "https://i.imgur.com/MXVH0ot.jpeg",
+        "https://i.imgur.com/IBuXiaQ.jpeg",
+        "https://i.imgur.com/fCRZ0ab.jpeg",
+        "https://i.imgur.com/yfjkfwY.jpeg",
+      ];
+
+      let currentImageIndex = 0;
+
+      const shineWrapper = document.querySelector(".shine-wrapper");
+
+      profileImg.addEventListener("click", () => {
+        // Wait a bit to let the browser register the class removal
+        setTimeout(() => {
+          // Change image source
+          currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+          profileImg.src = imageUrls[currentImageIndex];
+
+          // Trigger shine animation
+          shineWrapper.classList.remove("animate-shine");
+          void shineWrapper.offsetWidth; // force reflow
+          shineWrapper.classList.add("animate-shine");
+
+          // Fade in the new image
+          profileImg.classList.add("visible");
+        }, 10); // slight delay for class removal to take effect
+      });
+
+      profileImg.classList.add("visible");
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
