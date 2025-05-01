@@ -112,3 +112,78 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
+
+<h3>Skills</h3>
+<ul id="skillList">
+  <li>JavaScript</li>
+  <li>HTML</li>
+</ul>
+<button id="addSkill">Add Skill</button>
+
+
+<script>
+document.getElementById("addSkill").addEventListener("click", () => {
+  const li = document.createElement("li");
+  li.textContent = "CSS";
+  document.getElementById("skillList").appendChild(li);
+});
+</script>
+
+
+<h3>Contact Me</h3>
+<input type="text" id="nameInput" placeholder="Your name">
+<p>Hello, <span id="namePreview">friend</span>!</p>
+
+<script>
+document.getElementById("nameInput").addEventListener("input", (event) => {
+  const name = event.target.value || "friend";
+  document.getElementById("namePreview").textContent = name;
+});
+</script>
+
+
+
+<script>
+    const profileImg = document.querySelector(".profile-img");
+  
+    profileImg.addEventListener("click", () => {
+      profileImg.style.transition = "none";
+      profileImg.style.transform = "rotate(0deg)";
+  
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          profileImg.style.transition = "transform 1s ease";
+          profileImg.style.transform = "rotate(360deg)";
+        });
+      });
+    });
+  </script>
+  
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Open Modal
+  </button>
+
+  
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Hey there!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">
+          This is my pop-up!
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
