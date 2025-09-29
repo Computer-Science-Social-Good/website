@@ -83,24 +83,111 @@
     </nav>
 
     <!-- Profile Section -->
-    <div class="container profile-section">
-      <img
-        src="https://picsum.photos/200"
-        class="profile-img rounded-circle shadow"
-        alt="Member Name"
-      />
-      <h1 class="fw-bold">Liam Stapley</h1>
-      <div class="profile-info">
-        <p class="text-muted"><strong>Year:</strong> Freshman</p>
-        <p class="text-muted"><strong>Majors:</strong> Computer Science; Mathematics & Data Science</p>
-        <p class="text-muted"><strong>Minors:</strong> Economics; Cybersecurity</p>
-        <h3 class="fw-bold">Help me pay for GTAVI!!</h3>
-        <p class="mt-3">
-          Venmo me @liamstapley (please)
-        </p>
-      </div>
+    <div class="container profile-section position-relative">
+  <!-- Profile Header -->
+  <div class="profile-header text-center mb-5">
+    <img
+      src="../assets/img/liam-stapley/profile_pic.png"
+      class="profile-img shadow"
+      alt="Liam Stapley"
+    />
+    <h1 class="fw-bold mt-3">Liam Stapley</h1>
+    <p class="text-muted"><strong>Year:</strong> Junior</p>
+    <p class="text-muted"><strong>Majors:</strong> Computer Science; Mathematics and Data Science</p>
+    <p class="text-muted"><strong>Minor:</strong> Economics</p>
+    <div class="links mt-3">
+      <a href="https://www.linkedin.com/in/liamstapley" target="_blank" class="btn btn-outline-primary btn-sm">LinkedIn</a>
+      <a href="https://github.com/liamstapley" target="_blank" class="btn btn-outline-dark btn-sm">GitHub</a>
     </div>
+  </div>
 
+  <!-- About Me -->
+  <section class="p-4 rounded shadow-sm bg-light mb-5">
+    <h3 class="fw-bold text-center mb-3">About Me</h3>
+    <p class="text-center">
+      I am a Computer Science and Data Science student at the University of Delaware passionate about
+      developing impactful, user-focused technology. My experience spans full-stack web development,
+      data visualization, and machine learning. I enjoy tackling projects that combine technical
+      innovation with social good and collaboration.
+    </p>
+  </section>
+
+  <!-- Clubs -->
+  <section class="p-4 rounded shadow-sm bg-white mb-5">
+    <h3 class="fw-bold text-center mb-3">Clubs & Involvement</h3>
+    <ul class="list-unstyled text-center">
+      <li>President – CS + Social Good</li>
+      <li>Undergraduate Researcher – Sensify Lab</li>
+      <li>Organizer – HenHacks Hackathon</li>
+      <li>Undergraduate TA – UD Computer Science</li>
+      <li>Delaware Innovation Fellows (Phase 2)</li>
+      <li>Blue Hen Data Analytics Club</li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section class="p-4 rounded shadow-sm bg-light mb-5">
+    <h3 class="fw-bold text-center mb-3">Projects</h3>
+    <ul class="list-unstyled text-center">
+      <li><strong>RankRiser:</strong> GPT-powered fitness app with workout recommendations and trackers</li>
+      <li><strong>DataFest 2025:</strong> “Best Insight” award for real estate data analysis</li>
+    </ul>
+  </section>
+
+  <!-- Hobbies -->
+  <section class="p-4 rounded shadow-sm bg-white mb-5">
+    <h3 class="fw-bold text-center mb-3">Hobbies & Interests</h3>
+    <p class="text-center">
+      Outside of academics, I enjoy listening to and playing music, watching movies/TV shows, and playing video games. 
+      I also love going to the gym, playing soccer, and surfing.
+    </p>
+  </section>
+
+  <!-- Stickers -->
+  <div class="sticker sticker1">
+    <img src="../assets/img/liam-stapley/brenn!_album_pic.jpg" alt="Brenn Album" />
+  </div>
+  <div class="sticker sticker2">
+    <img src="../assets/img/liam-stapley/dominic_fike_album.jpg" alt="Dominic Fike Album" />
+  </div>
+  <div class="sticker sticker3">
+    <img src="../assets/img/liam-stapley/invincible_poster.jpg" alt="Invincible Poster" />
+  </div>
+  <div class="sticker sticker4">
+    <img src="../assets/img/liam-stapley/spiderman_poster.jpg" alt="Spiderman Poster" />
+  </div>
+</div>
+
+<style>
+  body {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  }
+  .profile-section section {
+    max-width: 800px;
+    margin: auto;
+  }
+  .sticker {
+    position: absolute;
+    width: 200px;
+    transition: transform 0.3s ease;
+  }
+  .sticker img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
+  .sticker:hover {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 5;
+  }
+  /* Better placed around sections */
+  .sticker1 { top: 200px; left: 5%; transform: rotate(-5deg); }
+  .sticker2 { top: 350px; right: 5%; transform: rotate(4deg); }
+  .sticker3 { top: 750px; left: 6%; transform: rotate(3deg); }
+  .sticker4 { top: 1050px; right: 6%; transform: rotate(-6deg); }
+</style>
+
+    
     <!-- Footer -->
     <footer class="bg-light py-3 fixed-bottom">
       <div class="container footer-container">
