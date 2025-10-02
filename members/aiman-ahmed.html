@@ -71,6 +71,13 @@
       font-family: 'Lato';
     }
 
+  .notepad {
+  position: absolute;   /* take it out of normal flow */
+  top: 85px;            /* push down a little */
+  left: 950px;           /* push right a little */
+}
+
+
   .notepad img {
   width: 315px;   /* adjust size */
   height: 290px;
@@ -84,7 +91,7 @@
 
   .notepad:hover {
     transform: scale(1.02) rotate(0deg);
-    z-index: 2;
+    z-index: 5;
   }
 
   .fun {
@@ -151,7 +158,7 @@
         opacity: 0.5; /* starts fading out halfway */
       }
       100% {
-        transform: translateY(-100vh) scale(1.2);
+        transform: translateY(-250vh) scale(1.2);
         opacity: 0; /* gone by mid-page */
       }
     }
@@ -198,8 +205,8 @@ li{
 }
 
 .doodle {
-  width: 60px;
-  height: auto;
+  width: 800px;
+  height: 100px;
   margin-right: 8px;
   vertical-align: middle;
 }
@@ -277,10 +284,10 @@ li{
   <img id="notepadImg" src="../assets/img/aiman-ahmed/ask_notepad.png" onclick="nextNote()" />
 </div>
 <!-- About me -->
-<img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
 <section class="about me">
-    <h3 class="fw-bold text-center mb-3">
-    About Me
+  <h3 class="fw-bold text-center mb-3">
+    <img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
+    <br>About Me
   </h3>
   <p class="list-unstyled text-center">
       My name is Aiman and I am a sophomore at the University of Delaware studying computer science with minors in cybersecurity and
@@ -291,9 +298,11 @@ li{
 
 
 <!-- Clubs -->
-<img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
 <section class="extracurriculars">
-  <h3 class="fw-bold text-center mb-3">Extracurriculars</h3>
+  <h3 class="fw-bold text-center mb-3">
+    <img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
+    <br>Extracurriculars
+  </h3>
   <ul class="list-unstyled text-center">
     <li>Volunteer Outreach Coordinator – CS + Social Good</li>
     <li>Media and DEI Committee - Computing Promotions Undergraduate Squad</li>
