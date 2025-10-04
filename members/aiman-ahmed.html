@@ -90,7 +90,7 @@
 }
 
   .notepad:hover {
-    transform: scale(1.02) rotate(0deg);
+    transform: scale(1.08) rotate(0deg);
     z-index: 5;
   }
 
@@ -109,9 +109,10 @@
     transform: scale(1.08) rotate(0deg);
     z-index: 5;
   }
+
  .fun3 img {
-    width: 150px;
-    height: 175px;
+    width: 160px;
+    height: 265px;
     border-radius: 10px;
     box-shadow: 0 0px 0px rgba(0,0,0,0.2);
   }
@@ -129,12 +130,72 @@
     box-shadow: 0 0px 0px rgba(0,0,0,0.2);
   }
   
+    .fun6 img {
+    width: 245px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+
+  .fun7 img {
+    width: 195px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+
+  }
+
+    .fun8 img {
+    width: 215px;
+    height: 175px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+
+  }
+
+   .fun9 img {
+    width: 195px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+
+  }
+
+   .fun10 img {
+    width: 170px;
+    height: 250px;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+  }
+
+     .fun11 img {
+    width: 230px;
+    height: 250px;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+  }
+
+  
+
   /* Better placed around sections */
   .fun1 { top: 95px; left: 2%; transform: rotate(-5deg); }
   .fun2 { top: 125px; left: 25%; transform: rotate(4deg); }
   .fun3 {top: 230px; left: 13%; transform: rotate(4deg); }
-  .fun4 {top: 140px; left: 59%; transform: rotate(-2deg); }
+  .fun4 {top: 200px; left: 59%; transform: rotate(-2deg); }
   .fun5 {top: 170px; left: 88%; transform: rotate(-10deg); }
+  .fun6 {bottom: 530px; left: 75%; transform: rotate(8deg); }
+  .fun7 {bottom: 115px; right: 75%; transform: rotate(0deg); }
+  .fun8 {top: 430px; left: 80%; transform: rotate(-3deg); }
+  .fun9 {top: 430px; right: 85%; transform: rotate(-3deg); }
+  .fun10 {bottom: 250px; left: 85%; transform: rotate(5deg); }
+  .fun11 {bottom: 60px; left: 70%; transform: rotate(5deg); }
+
+  
+
+
+
+
 
     .heart {
       position: absolute;
@@ -154,7 +215,7 @@
         opacity: 1;
       }
       50% {
-        transform: translateY(-50vh) scale(1);
+        transform: translateY(-100vh) scale(1);
         opacity: 0.5; /* starts fading out halfway */
       }
       100% {
@@ -210,6 +271,88 @@ li{
   margin-right: 8px;
   vertical-align: middle;
 }
+
+.list-unstyled-text-center{
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;     /* centers the block itself */
+  text-align: center; /* centers the text inside */
+
+}
+
+button {
+      all: unset;
+      cursor: pointer;
+}
+
+#camera-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  bottom: 499px; 
+  left: 5%; 
+  transform: rotate(-10deg); 
+}
+
+ #camera-button {
+    position: absolute;
+    width: 200px;
+    transition: transform 0.3s ease;
+  }
+
+  #camera-button:hover {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 5;
+  }
+
+  #camera-button img{
+    width: 325px;
+    height: 215px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+  }
+.popup {
+  display: none;
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: 800px;
+  height: 300px;
+  text-align: center;
+}
+
+#closebtn {
+  color: #f9a9e1; /* LinkedIn brand color for the text */
+  border-color: #e506a2; /* LinkedIn brand color for the border */
+  padding: 8px 16px; /* Adjusts the size of the button */
+  border-radius: 100px; /* Makes the button more rounded */
+  transition: all 0.3s ease; /* Smooths the hover effect */
+  background-color: #b60183; /* Changes background color on hover */
+  font-family: 'Lato';
+}
+
+#closebtn:hover{
+  background-color: #b60183; /* Changes background color on hover */
+  color: white; /* Changes text color on hover */
+}
+
+.imgs img {
+  width: 215px;
+  height: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .click-enlarge {
+  cursor: pointer;
+}
+
 
   </style>
 
@@ -289,7 +432,7 @@ li{
     <img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
     <br>About Me
   </h3>
-  <p class="list-unstyled text-center">
+  <p class="list-unstyled-text-center">
       My name is Aiman and I am a sophomore at the University of Delaware studying computer science with minors in cybersecurity and
     mathematics. I am very passionate and enjoy developing applications that are user-centered and ethical.  I truly believe software should
     be an equal, accessible, and enjoyable experience for everyone. Feel free to connect with me at aimanfahmedd@gmail.com for any professional inquiries.
@@ -303,7 +446,7 @@ li{
     <img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
     <br>Extracurriculars
   </h3>
-  <ul class="list-unstyled text-center">
+  <ul class="list-unstyled-text-center">
     <li>Volunteer Outreach Coordinator – CS + Social Good</li>
     <li>Media and DEI Committee - Computing Promotions Undergraduate Squad</li>
     <li>Undergraduate Researcher - Sensify Lab</li>
@@ -315,7 +458,7 @@ li{
 <img src="../assets/img/aiman-ahmed/section.png" alt="doodle" class="doodle">
 <section class="Hobbies">
   <h3 class="fw-bold text-center mb-3">Hobbies</h3>
-  <ul class="list-unstyled text-center">
+  <ul class="list-unstyled-text-center">
     <li>Hanging out with my family and friends</li>
     <li>Playing badminton</li>
     <li>Trying new coffee shops and cafes</li>
@@ -336,22 +479,83 @@ li{
     </a>
   </div>
     <div class="fun fun3">
-    <a href = "https://smiski.com/e/smiski/" target="_blank">
-        <img src="../assets/img/aiman-ahmed/glasses_smiski.png" alt="smiski1 trilogy" />
-    </a>
+        <img src="../assets/img/aiman-ahmed/flowers.png" alt="flowers" />
   </div>
-    </div>
     <div class="fun fun4">
     <a href = "https://ippodotea.com/collections/matcha/products/ikuyo" target="_blank">
         <img src="../assets/img/aiman-ahmed/matcha.png" alt="matcha" />
     </a>
-  </div>
     </div>
     <div class="fun fun5">
     <a onclick="myAudioFunction('Cat');">
         <img src="../assets/img/aiman-ahmed/gangsta_kitten.png" alt="kitten" />
     </a>
+    </div>
+
+    <div class="fun fun6">
+    <a onclick="myAudioFunction('Smiski');">
+        <img src="../assets/img/aiman-ahmed/smiski_computer.png" alt="smyski" />
+    </a>
+    </div>
+
+    <div class="fun fun7">
+    <a onclick="myAudioFunction('kitty');">
+        <img src="../assets/img/aiman-ahmed/serious_kitten.png" alt="cyat" />
+    </a>
+    </div>
+
+<div class="fun fun8">
+  <img 
+    src="../assets/img/aiman-ahmed/quote2.jpg" 
+    alt="quote" 
+    id="quote"
+    class="click-enlarge"
+
+  />
+</div>
+
+<div class="fun fun9">
+  <img 
+    src="../assets/img/aiman-ahmed/quote.jpg" 
+    alt="quote2" 
+    id="quote2"
+    class="click-enlarge"
+  />
+</div>
+
+    <div class="fun fun10">
+    <a href = "https://www.goodreads.com/book/show/58690308-book-lovers" target="_blank">
+        <img src="../assets/img/aiman-ahmed/book.jpg" alt="book" />
+    </a>
   </div>
+
+  
+    <div class="fun fun11">
+        <img src="../assets/img/aiman-ahmed/heart.png" alt="heart" />
+  </div>
+
+      <div class="outer">
+        <div class="popup">
+            <i class="far fa-check-circle"></i>
+            <p>This is the camera I have. I like to bring it to fun events and take cute pics. 
+              It's a Nikon Coolpix S33 if you are wondering. Here are some pictures I have taken with it.
+              Hope you enjoy!
+            </p>
+
+            <div class="imgs">
+              <img id="nyc" src="../assets/img/aiman-ahmed/nyc-digi.jpg" alt="ny" />
+              <img id="horse" src="../assets/img/aiman-ahmed/chincteaguedigi.jpg" alt="horse"/>
+              <img id="india" src ="../assets/img/aiman-ahmed/india.jpg" alt="india"/> 
+            </div>
+            
+            <button id="closebtn">Close</button>
+        </div>
+         <button id="camera-button">
+        <img src="../assets/img/aiman-ahmed/camera.png" alt="camera" />
+        </button>
+    </div>
+  
+
 
 </div>
 
@@ -388,9 +592,14 @@ li{
   }
 
   var aAudio = new Audio('../assets/img/aiman-ahmed/Sounds/meow.mp3');
+  var bAudio = new Audio('../assets/img/aiman-ahmed/Sounds/typing.mp3');
+
   function myAudioFunction(sound) {
          if(sound == 'Cat') {
              aAudio.play();
+         }
+         if(sound == 'Smiski'){
+          bAudio.play();
          }
      }
 
@@ -416,6 +625,40 @@ li{
 
     // make a heart every 700ms
     setInterval(createHeart, 700);
+
+    //camera button popup
+let camButton = document.getElementById("camera-button");
+let closebtn = document.getElementById("closebtn");
+let popup = document.querySelector(".popup");
+
+camButton.addEventListener("click", () => {
+  popup.style.display = "block";
+});
+
+// Close the popup
+closebtn.addEventListener("click", () => {
+  popup.style.display = "none";
+  document.body.style.backgroundColor = "#ffc5c5"; // restore original background
+});
+
+const toggleImgs = document.querySelectorAll(".click-enlarge");
+
+toggleImgs.forEach(img => {
+  img.addEventListener("click", () => {
+    const isEnlarged = img.classList.toggle("enlarged");
+    
+    if (isEnlarged) {
+      img.style.transform = "scale(1.5)";
+      img.style.transition = "transform 0.25s ease";
+      img.style.zIndex = "1000";
+    } else {
+      img.style.transform = "scale(1)";
+      img.style.transition = "transform 0.25s ease";
+      img.style.zIndex = "1";
+    }
+  });
+});
+
 </script>
 
 
