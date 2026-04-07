@@ -88,6 +88,18 @@
             }
             h1 {
                 top: 42vh;
+                white-space: nowrap;
+            }
+            h1::after {
+                content: "▌";
+                animation: blink 0.7s step-end infinite;
+                color: yellow;
+            }
+            h1.done-typing::after {
+                display: none;
+            }
+            @keyframes blink {
+                50% { opacity: 0; }
             }
             .profile-info {
                 top: 50vh;
@@ -132,6 +144,40 @@
             }
             .text-muted {
                 color: white !important; /* Override Bootstrap's muted text color */
+            }
+            .brainrot-bubble {
+                position: absolute;
+                pointer-events: none;
+                border-radius: 50%;
+                object-fit: cover;
+                opacity: 0.85;
+                z-index: 1;
+                animation: bubble-spin 4s linear infinite;
+            }
+            @keyframes bubble-spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .secret-portal {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                font-family: "Silkscreen", sans-serif;
+                font-size: 36px;
+                color: yellow;
+                opacity: 0;
+                transition: opacity 0.4s ease, text-shadow 0.4s ease;
+                pointer-events: none;
+                z-index: 10;
+            }
+            .secret-portal.visible {
+                opacity: 1;
+                text-shadow: 0 0 20px yellow, 0 0 40px orange, 0 0 60px red;
+                animation: portal-pulse 1s ease-in-out infinite alternate;
+            }
+            @keyframes portal-pulse {
+                from { text-shadow: 0 0 20px yellow, 0 0 40px orange; transform: scale(1); }
+                to { text-shadow: 0 0 30px yellow, 0 0 60px orange, 0 0 80px red; transform: scale(1.15); }
             }
             .hint {
                 position: absolute;
@@ -216,12 +262,11 @@
                 alt="Frank Murphy"
             />
             <div class="hint" id="drag-hint">← Click & drag me!</div>
-            <h1>Frank Murphy</h1>
+            <h1 id="typed-title"></h1>
             <div class="profile-info">
                 <p class="text-muted"><strong>Year:</strong> Class of 2028</p>
                 <p class="text-muted">
-                    <strong>Majors:</strong> Computer Science (B.S.), Physics
-                    (B.S.)
+                    <strong>Majors:</strong> Computer Science (B.S.)
                 </p>
             </div>
         </div>
@@ -242,6 +287,9 @@
                 alt="LinkedIn"
             />
         </a>
+
+        <!-- Secret Portal -->
+        <div class="secret-portal" id="secret-portal">?</div>
 
         <!-- Footer -->
         <footer class="py-3 fixed-bottom">
@@ -278,6 +326,56 @@
             document.addEventListener("DOMContentLoaded", () => {
                 makeBouncer(document.getElementById("github-icon"), 2, 2);
                 makeBouncer(document.getElementById("linkedin-icon"), -3, 2);
+
+                // Typing effect for title
+                const titleEl = document.getElementById("typed-title");
+                const titleText = "Frank Murphy";
+                let charIndex = 0;
+                function typeChar() {
+                    if (charIndex < titleText.length) {
+                        titleEl.textContent += titleText[charIndex];
+                        charIndex++;
+                        setTimeout(typeChar, 100 + Math.random() * 80);
+                    } else {
+                        // Keep cursor blinking for a bit, then remove it
+                        setTimeout(() => {
+                            titleEl.classList.add("done-typing");
+                        }, 2500);
+                    }
+                }
+                setTimeout(typeChar, 500); // small delay before typing starts
+
+                // Brainrot Bubble Screensaver
+                const brainrotMemes = [
+                    "https://i.kym-cdn.com/entries/icons/original/000/045/027/skibcover.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/035/151/among_us.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/045/485/gscover.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/045/298/babygronk.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/046/803/fanum_tax.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/041/576/cantevenohio.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/040/522/unspoken_rizz.jpg",
+                    "https://i.kym-cdn.com/entries/icons/original/000/036/388/maxresdefault.jpg",
+                ];
+                brainrotMemes.forEach((url) => {
+                    const img = document.createElement("img");
+                    img.src = url;
+                    img.className = "brainrot-bubble";
+                    const size = 40 + Math.random() * 60; // 40-100px
+                    img.style.width = size + "px";
+                    img.style.height = size + "px";
+                    img.style.animationDuration = (3 + Math.random() * 4) + "s";
+                    // Random direction for spin
+                    if (Math.random() > 0.5) {
+                        img.style.animationDirection = "reverse";
+                    }
+                    document.body.appendChild(img);
+                    const speedX = (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+                    const speedY = (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+                    makeBouncer(img, speedX, speedY);
+                });
+
+                // Secret Rick Roll Portal
+                const portal = document.getElementById("secret-portal");
                 const profileImg = document.querySelector(".profile-img");
 
                 const hint = document.getElementById("drag-hint");
@@ -346,6 +444,23 @@
                             ),
                             url('https://pixelz.cc/wp-content/uploads/2017/12/nyan-cat-uhd-4k-wallpaper.jpg')
                         `;
+
+                        // Secret portal proximity check
+                        const portalRect = portal.getBoundingClientRect();
+                        const portalCenterX = portalRect.left + portalRect.width / 2;
+                        const portalCenterY = portalRect.top + portalRect.height / 2;
+                        const dist = Math.hypot(
+                            moveEvent.clientX - portalCenterX,
+                            moveEvent.clientY - portalCenterY
+                        );
+                        if (dist < 200) {
+                            portal.classList.add("visible");
+                        } else {
+                            portal.classList.remove("visible");
+                        }
+                        if (dist < 60) {
+                            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                        }
                     };
 
                     const onMouseUp = () => {
