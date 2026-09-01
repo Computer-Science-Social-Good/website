@@ -153,12 +153,12 @@
                 overflow: hidden;
                 object-fit: cover;
                 z-index: 1;
-                animation: ball-spin 4s linear infinite;
             }
             .bouncy-ball-image {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                animation: ball-spin 4s linear infinite;
             }
             @keyframes ball-spin {
                 from {
@@ -335,6 +335,11 @@
                 SQUISH: "squish",
             });
             const SQUISH_DURATION_MS = 500;
+            const MIN_SQUASH_SCALE = 0.4;
+            const lerp = (start, end, t) => start + (end - start) * t;
+            const map_range = (value, inMin, inMax, outMin, outMax) =>
+                ((value - inMin) * (outMax - outMin)) / (inMax - inMin) +
+                outMin;
 
             function getCollisions(x, y, diameter) {
                 return {
@@ -352,8 +357,10 @@
                 // ball_element.style.backgroundBlendMode = "color";
                 ball_element.style.backgroundSize = "cover";
                 ball_element.style.backgroundColor = ball_properties.color;
+                let ball_image_el;
                 if (ball_properties.image_src !== undefined) {
-                    const ball_image_el = document.createElement("img");
+                    ball_image_el = document.createElement("img");
+                    ball_image_el.className = "bouncy-ball-image";
                     ball_image_el.src = ball_properties.image_src;
                     if (ball_properties.invert_image) {
                         ball_image_el.style.filter = "invert(1)";
@@ -395,6 +402,8 @@
                 let vx_before_squish = vx;
                 let vy_before_squish = vy;
 
+                let collisions = getCollisions(x, y, ball_diameter);
+
                 function moveAndBounceSquishy(timestamp) {
                     if (last_time === undefined) last_time = timestamp;
                     const delta_time = timestamp - last_time;
@@ -406,11 +415,7 @@
                         case BallState.MOVE:
                             x += vx;
                             y += vy;
-                            const collisions = getCollisions(
-                                x,
-                                y,
-                                ball_diameter,
-                            );
+                            collisions = getCollisions(x, y, ball_diameter);
                             // if (collisions.left || collisions.right) vx = -vx;
                             // if (collisions.top || collisions.bottom) vy = -vy;
                             if (
@@ -431,21 +436,102 @@
                                 vy_before_squish = vy;
                                 vx = 0;
                                 vy = 0;
+                                if (ball_image_el !== undefined) {
+                                    ball_image_el.style.animationPlayState =
+                                        "paused";
+                                }
                             } else if (squish_progress >= 1) {
                                 vx = -vx_before_squish;
                                 vy = -vy_before_squish;
+                                ball_element.style.transform = "scale(1, 1)";
+                                if (ball_image_el !== undefined) {
+                                    ball_image_el.style.animationPlayState =
+                                        "running";
+                                }
                                 state = BallState.MOVE;
                             } else if (squish_progress < 0.5) {
                                 if (collisions.left) {
+                                    const scale_x = lerp(
+                                        1,
+                                        MIN_SQUASH_SCALE,
+                                        squish_progress * 2,
+                                    );
+                                    const scale_y = 1 / Math.sqrt(scale_x);
+                                    ball_element.style.transformOrigin =
+                                        "left center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else if (collisions.right) {
+                                    const scale_x = lerp(
+                                        1,
+                                        MIN_SQUASH_SCALE,
+                                        squish_progress * 2,
+                                    );
+                                    const scale_y = 1 / Math.sqrt(scale_x);
+                                    ball_element.style.transformOrigin =
+                                        "right center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else if (collisions.top) {
+                                    const scale_y = lerp(
+                                        1,
+                                        MIN_SQUASH_SCALE,
+                                        squish_progress * 2,
+                                    );
+                                    const scale_x = 1 / Math.sqrt(scale_y);
+                                    ball_element.style.transformOrigin =
+                                        "top center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else {
+                                    const scale_y = lerp(
+                                        1,
+                                        MIN_SQUASH_SCALE,
+                                        squish_progress * 2,
+                                    );
+                                    const scale_x = 1 / Math.sqrt(scale_y);
+                                    ball_element.style.transformOrigin =
+                                        "bottom center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 }
                             } else {
                                 if (collisions.left) {
+                                    const scale_x = lerp(
+                                        MIN_SQUASH_SCALE,
+                                        1,
+                                        (squish_progress - 0.5) * 2,
+                                    );
+                                    const scale_y = 1 / Math.sqrt(scale_x);
+                                    ball_element.style.transformOrigin =
+                                        "left center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else if (collisions.right) {
+                                    const scale_x = lerp(
+                                        MIN_SQUASH_SCALE,
+                                        1,
+                                        (squish_progress - 0.5) * 2,
+                                    );
+                                    const scale_y = 1 / Math.sqrt(scale_x);
+                                    ball_element.style.transformOrigin =
+                                        "right center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else if (collisions.top) {
+                                    const scale_y = lerp(
+                                        MIN_SQUASH_SCALE,
+                                        1,
+                                        (squish_progress - 0.5) * 2,
+                                    );
+                                    const scale_x = 1 / Math.sqrt(scale_y);
+                                    ball_element.style.transformOrigin =
+                                        "top center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 } else {
+                                    const scale_y = lerp(
+                                        MIN_SQUASH_SCALE,
+                                        1,
+                                        (squish_progress - 0.5) * 2,
+                                    );
+                                    const scale_x = 1 / Math.sqrt(scale_y);
+                                    ball_element.style.transformOrigin =
+                                        "bottom center";
+                                    ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 }
                             }
                             squish_progress += delta_time / SQUISH_DURATION_MS;
