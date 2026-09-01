@@ -334,6 +334,7 @@
                 MOVE: "move",
                 SQUISH: "squish",
             });
+            const SQUISH_DURATION_MS = 500;
 
             function getCollisions(x, y, diameter) {
                 return {
@@ -381,41 +382,81 @@
 
                 let x = Math.random() * (window.innerWidth - ball_diameter);
                 let y = Math.random() * (window.innerHeight - ball_diameter);
-                let vx =
+                const vx_max =
                     (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
-                let vy =
+                const vy_max =
                     (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+                let vx = vx_max;
+                let vy = vy_max;
 
                 let last_time;
                 let state = BallState.MOVE;
+                let squish_progress = 0;
+                let vx_before_squish = vx;
+                let vy_before_squish = vy;
 
                 function moveAndBounceSquishy(timestamp) {
                     if (last_time === undefined) last_time = timestamp;
                     const delta_time = timestamp - last_time;
-
+                    last_time = timestamp;
                     x_prev = x;
                     y_prev = y;
 
-                    x += vx;
-                    y += vy;
-
-                    const collisions = getCollisions(x, y, ball_diameter);
-                    if (collisions.left || collisions.right) vx = -vx;
-                    if (collisions.top || collisions.bottom) vy = -vy;
-                    if (
-                        collisions.left ||
-                        collisions.right ||
-                        collisions.top ||
-                        collisions.bottom
-                    ) {
-                        if (!(state == BallState.SQUISH))
-                            state == BallState.SQUISH;
-                        //
+                    switch (state) {
+                        case BallState.MOVE:
+                            x += vx;
+                            y += vy;
+                            const collisions = getCollisions(
+                                x,
+                                y,
+                                ball_diameter,
+                            );
+                            // if (collisions.left || collisions.right) vx = -vx;
+                            // if (collisions.top || collisions.bottom) vy = -vy;
+                            if (
+                                collisions.left ||
+                                collisions.right ||
+                                collisions.top ||
+                                collisions.bottom
+                            ) {
+                                if (!(state == BallState.SQUISH)) {
+                                    state = BallState.SQUISH;
+                                    squish_progress = 0;
+                                }
+                            }
+                            break;
+                        case BallState.SQUISH:
+                            if (squish_progress == 0) {
+                                vx_before_squish = vx;
+                                vy_before_squish = vy;
+                                vx = 0;
+                                vy = 0;
+                            } else if (squish_progress >= 1) {
+                                vx = -vx_before_squish;
+                                vy = -vy_before_squish;
+                                state = BallState.MOVE;
+                            } else if (squish_progress < 0.5) {
+                                if (collisions.left) {
+                                } else if (collisions.right) {
+                                } else if (collisions.top) {
+                                } else {
+                                }
+                            } else {
+                                if (collisions.left) {
+                                } else if (collisions.right) {
+                                } else if (collisions.top) {
+                                } else {
+                                }
+                            }
+                            squish_progress += delta_time / SQUISH_DURATION_MS;
+                            break;
+                        default:
+                            console.error(`Unknown state reached: ${state}`);
+                            break;
                     }
 
                     ball_element.style.left = x + "px";
                     ball_element.style.top = y + "px";
-
                     requestAnimationFrame(moveAndBounceSquishy);
                 }
                 moveAndBounceSquishy();
