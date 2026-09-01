@@ -334,7 +334,7 @@
                 MOVE: "move",
                 SQUISH: "squish",
             });
-            const SQUISH_DURATION_MS = 500;
+            const SQUISH_DURATION_MS = 350;
             const MIN_SQUASH_SCALE = 0.4;
             const lerp = (start, end, t) => start + (end - start) * t;
             const map_range = (value, inMin, inMax, outMin, outMax) =>
@@ -432,17 +432,25 @@
                             break;
                         case BallState.SQUISH:
                             if (squish_progress == 0) {
-                                vx_before_squish = vx;
-                                vy_before_squish = vy;
-                                vx = 0;
-                                vy = 0;
+                                if (collisions.left || collisions.right) {
+                                    vx_before_squish = vx;
+                                    vx = 0;
+                                } else {
+                                    vy_before_squish = vy;
+                                    vy = 0;
+                                }
                                 if (ball_image_el !== undefined) {
                                     ball_image_el.style.animationPlayState =
                                         "paused";
                                 }
+                                x += vx;
+                                y += vy;
                             } else if (squish_progress >= 1) {
-                                vx = -vx_before_squish;
-                                vy = -vy_before_squish;
+                                if (collisions.left || collisions.right) {
+                                    vx = -vx_before_squish;
+                                } else {
+                                    vy = -vy_before_squish;
+                                }
                                 ball_element.style.transform = "scale(1, 1)";
                                 if (ball_image_el !== undefined) {
                                     ball_image_el.style.animationPlayState =
@@ -450,6 +458,8 @@
                                 }
                                 state = BallState.MOVE;
                             } else if (squish_progress < 0.5) {
+                                x += vx;
+                                y += vy;
                                 if (collisions.left) {
                                     const scale_x = lerp(
                                         1,
@@ -492,6 +502,8 @@
                                     ball_element.style.transform = `scale(${scale_x}, ${scale_y})`;
                                 }
                             } else {
+                                x += vx;
+                                y += vy;
                                 if (collisions.left) {
                                     const scale_x = lerp(
                                         MIN_SQUASH_SCALE,
