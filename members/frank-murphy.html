@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- TODO: funny arg 2, TypeScript?, place assets in dedicated folder or personal CDN -->
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -28,7 +29,8 @@
             }
             body {
                 font-family: "Silkscreen", sans-serif !important;
-                background-image: radial-gradient(
+                background-image:
+                    radial-gradient(
                         circle at center,
                         rgba(255, 255, 0, 0.3) 0%,
                         rgba(255, 255, 0, 0.1) 30%,
@@ -99,19 +101,17 @@
                 display: none;
             }
             @keyframes blink {
-                50% { opacity: 0; }
+                50% {
+                    opacity: 0;
+                }
             }
             .profile-info {
                 top: 50vh;
                 max-width: 600px;
                 margin: 0 auto;
             }
-            .floating-icon {
-                position: absolute;
-                width: 60px;
-                height: 60px;
-                pointer-events: auto; /* clickable */
-                filter: invert(1);
+            .hidden-icon {
+                visibility: hidden;
             }
             .footer-container {
                 background-color: transparent !important; /* Make footer container transparent */
@@ -145,18 +145,21 @@
             .text-muted {
                 color: white !important; /* Override Bootstrap's muted text color */
             }
-            .brainrot-bubble {
+            .bouncy-ball {
                 position: absolute;
                 pointer-events: none;
                 border-radius: 50%;
                 object-fit: cover;
-                opacity: 0.85;
                 z-index: 1;
-                animation: bubble-spin 4s linear infinite;
+                animation: ball-spin 4s linear infinite;
             }
-            @keyframes bubble-spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
+            @keyframes ball-spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
             }
             .secret-portal {
                 position: fixed;
@@ -166,18 +169,34 @@
                 font-size: 36px;
                 color: yellow;
                 opacity: 0;
-                transition: opacity 0.4s ease, text-shadow 0.4s ease;
+                transition:
+                    opacity 0.4s ease,
+                    text-shadow 0.4s ease;
                 pointer-events: none;
                 z-index: 10;
             }
             .secret-portal.visible {
                 opacity: 1;
-                text-shadow: 0 0 20px yellow, 0 0 40px orange, 0 0 60px red;
+                text-shadow:
+                    0 0 20px yellow,
+                    0 0 40px orange,
+                    0 0 60px red;
                 animation: portal-pulse 1s ease-in-out infinite alternate;
             }
             @keyframes portal-pulse {
-                from { text-shadow: 0 0 20px yellow, 0 0 40px orange; transform: scale(1); }
-                to { text-shadow: 0 0 30px yellow, 0 0 60px orange, 0 0 80px red; transform: scale(1.15); }
+                from {
+                    text-shadow:
+                        0 0 20px yellow,
+                        0 0 40px orange;
+                    transform: scale(1);
+                }
+                to {
+                    text-shadow:
+                        0 0 30px yellow,
+                        0 0 60px orange,
+                        0 0 80px red;
+                    transform: scale(1.15);
+                }
             }
             .hint {
                 position: absolute;
@@ -196,7 +215,9 @@
 
             /* transitions only apply when the 'animate' class is present */
             .hint.animate {
-                transition: opacity 0.6s ease, transform 0.6s ease;
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s ease;
             }
 
             .hint.show {
@@ -275,7 +296,7 @@
             <img
                 id="github-icon"
                 src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"
-                class="floating-icon"
+                class="hidden-icon"
                 alt="GitHub"
             />
         </a>
@@ -283,7 +304,7 @@
             <img
                 id="linkedin-icon"
                 src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
-                class="floating-icon"
+                class="hidden-icon"
                 alt="LinkedIn"
             />
         </a>
@@ -302,30 +323,101 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            function makeBouncer(el, speedX, speedY) {
-                let x = Math.random() * (window.innerWidth - el.offsetWidth);
-                let y = Math.random() * (window.innerHeight - el.offsetHeight);
+            const BallState = Object.freeze({
+                MOVE: "move",
+                SQUISH: "squish",
+            });
 
-                function move() {
-                    x += speedX;
-                    y += speedY;
+            function getCollisions(x, y, diameter) {
+                return {
+                    left: x <= 0,
+                    top: y <= 0,
+                    right: x + diameter >= window.innerWidth,
+                    bottom: y + diameter >= window.innerHeight,
+                };
+            }
 
-                    if (x <= 0 || x + el.offsetWidth >= window.innerWidth)
-                        speedX *= -1;
-                    if (y <= 0 || y + el.offsetHeight >= window.innerHeight)
-                        speedY *= -1;
-
-                    el.style.left = x + "px";
-                    el.style.top = y + "px";
-
-                    requestAnimationFrame(move);
+            function makeBouncyBall(ball_properties) {
+                const ball_element = document.createElement("img");
+                const ball_diameter = 40 + Math.random() * 60; // 40-100px
+                ball_element.className = "bouncy-ball";
+                ball_element.style.backgroundBlendMode = "color";
+                ball_element.style.backgroundBlendMode = "cover";
+                ball_element.style.backgroundColor = ball_properties.color;
+                if (ball_properties.image_src !== null) {
+                    ball_element.src = ball_properties.image_src;
+                    if (ball_properties.invert_image) {
+                        ball_element.style.filter = "invert(1)";
+                    }
                 }
-                move();
+                switch (ball_properties.texture) {
+                    case "shiny":
+                        break;
+                    case "rough":
+                        break;
+                    default:
+                        break;
+                }
+                ball_element.style.width = ball_diameter + "px";
+                ball_element.style.height = ball_diameter + "px";
+                ball_element.style.animationDuration =
+                    3 + Math.random() * 4 + "s";
+
+                // Random direction for spin
+                // if (Math.random() > 0.5) {
+                //     ball_element.style.animationDirection = "reverse";
+                // }
+
+                document.body.appendChild(ball_element);
+
+                let x = Math.random() * (window.innerWidth - ball_diameter);
+                let y = Math.random() * (window.innerHeight - ball_diameter);
+                let vx =
+                    (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+                let vy =
+                    (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+
+                let last_time;
+                let state = BallState.MOVE;
+
+                function moveAndBounceSquishy(timestamp) {
+                    if (last_time === undefined) last_time = timestamp;
+                    const delta_time = timestamp - last_time;
+
+                    x_prev = x;
+                    y_prev = y;
+
+                    x += vx;
+                    y += vy;
+
+                    const collisions = getCollisions(x, y, ball_diameter);
+                    if (collisions.left || collisions.right) vx = -vx;
+                    if (collisions.top || collisions.bottom) vy = -vy;
+                    if (
+                        collisions.left ||
+                        collisions.right ||
+                        collisions.top ||
+                        collisions.bottom
+                    ) {
+                        if (!(state == BallState.SQUISH))
+                            state == BallState.SQUISH;
+                        //
+                    }
+
+                    ball_element.style.left = x + "px";
+                    ball_element.style.top = y + "px";
+
+                    requestAnimationFrame(moveAndBounceSquishy);
+                }
+                moveAndBounceSquishy();
             }
 
             document.addEventListener("DOMContentLoaded", () => {
-                makeBouncer(document.getElementById("github-icon"), 2, 2);
-                makeBouncer(document.getElementById("linkedin-icon"), -3, 2);
+                /*
+                scaleY * scaleX ** 2 = 1 
+                scaleX = scaleY_correction = 1 / sqrt(scaleY)
+                scaleY < 1, scaleX > 1
+                */
 
                 // Typing effect for title
                 const titleEl = document.getElementById("typed-title");
@@ -345,33 +437,34 @@
                 }
                 setTimeout(typeChar, 500); // small delay before typing starts
 
-                // Brainrot Bubble Screensaver
-                const brainrotMemes = [
-                    "https://i.kym-cdn.com/entries/icons/original/000/045/027/skibcover.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/035/151/among_us.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/045/485/gscover.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/045/298/babygronk.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/046/803/fanum_tax.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/041/576/cantevenohio.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/040/522/unspoken_rizz.jpg",
-                    "https://i.kym-cdn.com/entries/icons/original/000/036/388/maxresdefault.jpg",
+                // Balls
+                makeBouncyBall({
+                    color: "",
+                    texture: null,
+                    image_src: document.getElementById("github-icon").src,
+                    invert_image: true,
+                });
+                makeBouncyBall({
+                    color: "",
+                    texture: null,
+                    image_src: document.getElementById("linkedin-icon").src,
+                    invert_image: true,
+                });
+
+                const balls = [
+                    {
+                        color: "#FF4923",
+                        texture: "rough",
+                    },
+                    {
+                        color: "#390923",
+                        texture: "shiny",
+                    },
+                    // ...
                 ];
-                brainrotMemes.forEach((url) => {
-                    const img = document.createElement("img");
-                    img.src = url;
-                    img.className = "brainrot-bubble";
-                    const size = 40 + Math.random() * 60; // 40-100px
-                    img.style.width = size + "px";
-                    img.style.height = size + "px";
-                    img.style.animationDuration = (3 + Math.random() * 4) + "s";
-                    // Random direction for spin
-                    if (Math.random() > 0.5) {
-                        img.style.animationDirection = "reverse";
-                    }
-                    document.body.appendChild(img);
-                    const speedX = (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
-                    const speedY = (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
-                    makeBouncer(img, speedX, speedY);
+
+                balls.forEach((ball_properties) => {
+                    makeBouncyBall(ball_properties);
                 });
 
                 // Secret Rick Roll Portal
@@ -447,11 +540,13 @@
 
                         // Secret portal proximity check
                         const portalRect = portal.getBoundingClientRect();
-                        const portalCenterX = portalRect.left + portalRect.width / 2;
-                        const portalCenterY = portalRect.top + portalRect.height / 2;
+                        const portalCenterX =
+                            portalRect.left + portalRect.width / 2;
+                        const portalCenterY =
+                            portalRect.top + portalRect.height / 2;
                         const dist = Math.hypot(
                             moveEvent.clientX - portalCenterX,
-                            moveEvent.clientY - portalCenterY
+                            moveEvent.clientY - portalCenterY,
                         );
                         if (dist < 200) {
                             portal.classList.add("visible");
@@ -459,7 +554,8 @@
                             portal.classList.remove("visible");
                         }
                         if (dist < 60) {
-                            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                            window.location.href =
+                                "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
                         }
                     };
 
