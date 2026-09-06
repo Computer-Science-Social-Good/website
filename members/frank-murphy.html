@@ -124,7 +124,9 @@
                 MOVE: "move",
                 SQUISH: "squish",
             });
-            const MIN_SQUASH_SCALE = 0.4;
+            const MIN_SQUASH_SCALE_MIN = 0.6;
+            const SQUISH_DURATION_MS_MAX = 350;
+            const SQUISH_DURATION_MS_MIN = 150;
             const lerp = (start, end, t) => start + (end - start) * t;
             const map_range = (value, inMin, inMax, outMin, outMax) =>
                 ((value - inMin) * (outMax - outMin)) / (inMax - inMin) +
@@ -183,7 +185,6 @@
                 const vy_max =
                     (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
                 const v_max = Math.sqrt(18);
-                const SQUISH_DURATION_MS_MAX = 350;
                 let vx = vx_max;
                 let vy = vy_max;
 
@@ -259,6 +260,18 @@
                                 if (collisions.bottom) {
                                     y = window.innerHeight - ball_diameter;
                                 }
+                                const v_to_vmax_ratio =
+                                    Math.sqrt(vx * vx + vy * vy) / v_max;
+                                squish_duration_ms = lerp(
+                                    SQUISH_DURATION_MS_MAX,
+                                    SQUISH_DURATION_MS_MIN,
+                                    v_to_vmax_ratio,
+                                );
+                                min_squish_scale = lerp(
+                                    1,
+                                    MIN_SQUASH_SCALE_MIN,
+                                    v_to_vmax_ratio,
+                                );
                             }
                             break;
                         case BallState.SQUISH:
@@ -270,28 +283,28 @@
                                     if (collisions.left) {
                                         scale_x = lerp(
                                             1,
-                                            MIN_SQUASH_SCALE,
+                                            min_squish_scale,
                                             squish_progress_x * 2,
                                         );
                                     } else {
                                         // right
                                         scale_x = lerp(
                                             1,
-                                            MIN_SQUASH_SCALE,
+                                            min_squish_scale,
                                             squish_progress_x * 2,
                                         );
                                     }
                                 } else if (squish_progress_x < 1) {
                                     if (collisions.left) {
                                         scale_x = lerp(
-                                            MIN_SQUASH_SCALE,
+                                            min_squish_scale,
                                             1,
                                             (squish_progress_x - 0.5) * 2,
                                         );
                                     } else {
                                         // right
                                         scale_x = lerp(
-                                            MIN_SQUASH_SCALE,
+                                            min_squish_scale,
                                             1,
                                             (squish_progress_x - 0.5) * 2,
                                         );
@@ -307,12 +320,12 @@
                                 } else if (squish_progress_y < 0.5) {
                                     scale_y = lerp(
                                         1,
-                                        MIN_SQUASH_SCALE,
+                                        min_squish_scale,
                                         squish_progress_y * 2,
                                     );
                                 } else if (squish_progress_y < 1) {
                                     scale_y = lerp(
-                                        MIN_SQUASH_SCALE,
+                                        min_squish_scale,
                                         1,
                                         (squish_progress_y - 0.5) * 2,
                                     );
