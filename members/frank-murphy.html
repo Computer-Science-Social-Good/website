@@ -1,4 +1,4 @@
-<!-- TODO: funny arg 2, TypeScript?, place assets in dedicated folder or personal CDN, make blinking cursor not push text off center -->
+<!-- TODO: funny arg 2, TypeScript?, fix secret rickroll, place assets in dedicated folder or personal CDN, make blinking cursor not push text off center -->
 <!doctype html>
 <html lang="en">
     <head>
@@ -21,217 +21,7 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../index.css" />
-        <style>
-            html,
-            body {
-                height: 100%;
-                overflow: hidden; /* Prevent scrolling */
-            }
-            body {
-                font-family: "Silkscreen", sans-serif !important;
-                background-image:
-                    radial-gradient(
-                        circle at center,
-                        rgba(255, 255, 0, 0.3) 0%,
-                        rgba(255, 255, 0, 0.1) 30%,
-                        rgba(0, 0, 0, 0.8) 100%
-                    ),
-                    url("https://pixelz.cc/wp-content/uploads/2017/12/nyan-cat-uhd-4k-wallpaper.jpg");
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                color: white !important; /* Make all text white */
-                transition: background-position 0.1s ease; /* Smooth transition for gradient updates */
-            }
-            .nav-container,
-            .footer-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: rgb(19, 52, 98) !important;
-            }
-            .navbar {
-                background-color: transparent !important; /* Make navbar transparent */
-                border: none !important; /* Remove any borders */
-                box-shadow: none !important; /* Remove any shadows */
-            }
-            .navbar .nav-link,
-            .navbar .navbar-brand {
-                color: white !important; /* Set navbar text color to white */
-            }
-            .navbar .nav-link:hover {
-                color: yellow !important; /* Optional: Highlight on hover */
-            }
-            .profile-section {
-                padding-top: 100px; /* Adjust for fixed navbar */
-                padding-bottom: 60px; /* Adjust for fixed footer */
-                text-align: center;
-                color: white !important; /* Ensure all text in the profile section is white */
-            }
-            .profile-img {
-                position: absolute;
-                width: 200px;
-                height: 200px;
-                left: calc(50% - 100px);
-                top: 13vh;
-                object-fit: cover;
-                border-radius: 50%;
-                box-shadow: 0 0 20px 10px yellow !important; /* Ensure yellow glow is applied */
-                cursor: grab; /* Indicate draggable element */
-            }
-            .profile-img:active {
-                cursor: grabbing; /* Change cursor when dragging */
-            }
-            h1,
-            .profile-info {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            h1 {
-                top: 42vh;
-                white-space: nowrap;
-            }
-            h1::after {
-                content: "▌";
-                animation: blink 0.7s step-end infinite;
-                color: yellow;
-            }
-            h1.done-typing::after {
-                display: none;
-            }
-            @keyframes blink {
-                50% {
-                    opacity: 0;
-                }
-            }
-            .profile-info {
-                top: 50vh;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-            .hidden-icon {
-                visibility: hidden;
-            }
-            .footer-container {
-                background-color: transparent !important; /* Make footer container transparent */
-            }
-            footer {
-                background-color: transparent !important; /* Ensure footer is transparent */
-                position: absolute; /* Change position to absolute */
-                width: 100%; /* Ensure footer spans the full width */
-            }
-            .navbar-collapse {
-                background-color: transparent !important; /* Ensure collapsed menu is transparent */
-            }
-            .navbar-toggler {
-                background-color: transparent !important; /* Ensure toggler button is transparent */
-                border: none !important; /* Remove toggler button border */
-            }
-            .navbar-toggler-icon {
-                background-image: none !important; /* Remove default toggler icon background */
-            }
-            .nav-container {
-                background-color: transparent !important; /* Ensure nav-container is transparent */
-            }
-            .navbar .nav-link,
-            .navbar .navbar-brand,
-            .profile-section,
-            .profile-info,
-            .footer-container,
-            footer {
-                color: white !important; /* Explicitly set text color to white for all sections */
-            }
-            .text-muted {
-                color: white !important; /* Override Bootstrap's muted text color */
-            }
-            .bouncy-ball {
-                display: flex;
-                position: absolute;
-                pointer-events: none;
-                border-radius: 50%;
-                overflow: hidden;
-                object-fit: cover;
-                z-index: 1;
-            }
-            .bouncy-ball-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                animation: ball-spin 4s linear infinite;
-            }
-            @keyframes ball-spin {
-                from {
-                    transform: rotate(0deg);
-                }
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-            .secret-portal {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                font-family: "Silkscreen", sans-serif;
-                font-size: 36px;
-                color: yellow;
-                opacity: 0;
-                transition:
-                    opacity 0.4s ease,
-                    text-shadow 0.4s ease;
-                pointer-events: none;
-                z-index: 10;
-            }
-            .secret-portal.visible {
-                opacity: 1;
-                text-shadow:
-                    0 0 20px yellow,
-                    0 0 40px orange,
-                    0 0 60px red;
-                animation: portal-pulse 1s ease-in-out infinite alternate;
-            }
-            @keyframes portal-pulse {
-                from {
-                    text-shadow:
-                        0 0 20px yellow,
-                        0 0 40px orange;
-                    transform: scale(1);
-                }
-                to {
-                    text-shadow:
-                        0 0 30px yellow,
-                        0 0 60px orange,
-                        0 0 80px red;
-                    transform: scale(1.15);
-                }
-            }
-            .hint {
-                position: absolute;
-                left: calc(50% + 130px); /* next to profile img */
-                font-family: "Silkscreen", sans-serif;
-                font-size: 18px;
-                color: yellow;
-                background: rgba(0, 0, 0, 0.7);
-                padding: 6px 10px;
-                border-radius: 6px;
-                white-space: nowrap;
-                opacity: 0;
-                transform: translateX(50px); /* start offset */
-                pointer-events: none;
-            }
-
-            /* transitions only apply when the 'animate' class is present */
-            .hint.animate {
-                transition:
-                    opacity 0.6s ease,
-                    transform 0.6s ease;
-            }
-
-            .hint.show {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        </style>
+        <link rel="stylesheet" href="../assets/frank-murphy/profile.css" />
     </head>
     <body>
         <!-- Navigation -->
@@ -302,7 +92,7 @@
         <a href="https://github.com/frankm24" target="_blank">
             <img
                 id="github-icon"
-                src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"
+                src="../assets/frank-murphy/images/github-icon.svg"
                 class="hidden-icon"
                 alt="GitHub"
             />
@@ -310,7 +100,7 @@
         <a href="https://linkedin.com/in/frank-murphy-ud" target="_blank">
             <img
                 id="linkedin-icon"
-                src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
+                src="../assets/frank-murphy/images/linkedin-icon.svg"
                 class="hidden-icon"
                 alt="LinkedIn"
             />
@@ -334,7 +124,6 @@
                 MOVE: "move",
                 SQUISH: "squish",
             });
-            const SQUISH_DURATION_MS = 350;
             const MIN_SQUASH_SCALE = 0.4;
             const lerp = (start, end, t) => start + (end - start) * t;
             const map_range = (value, inMin, inMax, outMin, outMax) =>
@@ -393,6 +182,8 @@
                     (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
                 const vy_max =
                     (1 + Math.random() * 2) * (Math.random() > 0.5 ? 1 : -1);
+                const v_max = Math.sqrt(18);
+                const SQUISH_DURATION_MS_MAX = 350;
                 let vx = vx_max;
                 let vy = vy_max;
 
@@ -406,6 +197,7 @@
                 let vy_before_squish = vy;
                 let scale_x;
                 let scale_y;
+                let squish_duration_ms;
 
                 let collisions = getCollisions(x, y, ball_diameter);
 
@@ -506,7 +298,7 @@
                                     }
                                 }
                                 squish_progress_x +=
-                                    delta_time / SQUISH_DURATION_MS;
+                                    delta_time / squish_duration_ms;
                             }
                             if (squishing_y) {
                                 if (squish_progress_y == 0) {
@@ -526,7 +318,7 @@
                                     );
                                 }
                                 squish_progress_y +=
-                                    delta_time / SQUISH_DURATION_MS;
+                                    delta_time / squish_duration_ms;
                             }
                             if (squishing_x && squishing_y) {
                                 if (
@@ -677,7 +469,7 @@
                                 rgba(255, 255, 0, 0.1) 30%,
                                 rgba(0, 0, 0, 0.8) 100%
                             ),
-                            url('https://pixelz.cc/wp-content/uploads/2017/12/nyan-cat-uhd-4k-wallpaper.jpg')
+                            url('../assets/frank-murphy/images/nyan-cat-wallpaper.jpg')
                         `;
 
                 let isDragging = false;
@@ -706,18 +498,18 @@
                                 rgba(255, 255, 0, 0.1) 30%,
                                 rgba(0, 0, 0, 0.8) 100%
                             ),
-                            url('https://pixelz.cc/wp-content/uploads/2017/12/nyan-cat-uhd-4k-wallpaper.jpg')
+                            url('../assets/frank-murphy/images/nyan-cat-wallpaper.jpg')
                         `;
 
                         // Secret portal proximity check
-                        const portalRect = portal.getBoundingClientRect();
-                        const portalCenterX =
-                            portalRect.left + portalRect.width / 2;
-                        const portalCenterY =
-                            portalRect.top + portalRect.height / 2;
+                        const portal_rect = portal.getBoundingClientRect();
+                        const portal_center_x =
+                            portal_rect.left + portal_rect.width / 2;
+                        const portal_center_y =
+                            portal_rect.top + portal_rect.height / 2;
                         const dist = Math.hypot(
-                            moveEvent.clientX - portalCenterX,
-                            moveEvent.clientY - portalCenterY,
+                            moveEvent.clientX - portal_center_x,
+                            moveEvent.clientY - portal_center_y,
                         );
                         if (dist < 200) {
                             portal.classList.add("visible");
