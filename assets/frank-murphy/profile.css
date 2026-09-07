@@ -70,6 +70,9 @@ h1 {
 }
 h1::after {
     content: "▌";
+    position: absolute;
+    left: 100%;
+    top: 0;
     animation: blink 0.7s step-end infinite;
     color: yellow;
 }
@@ -86,9 +89,7 @@ h1.done-typing::after {
     max-width: 600px;
     margin: 0 auto;
 }
-.hidden-icon {
-    visibility: hidden;
-}
+
 .footer-container {
     background-color: transparent !important; /* Make footer container transparent */
 }
@@ -130,6 +131,11 @@ footer {
     object-fit: cover;
     z-index: 1;
     /* filter: drop-shadow(5px 5px); */
+}
+.bouncy-ball a {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
 }
 /* .bouncy-ball.shiny {
     background-size: cover;

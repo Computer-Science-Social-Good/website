@@ -1,4 +1,4 @@
-<!-- TODO: funny arg 2, TypeScript?, fix secret rickroll, make blinking cursor not push text off center -->
+<!-- TODO: funny arg 2, TypeScript? -->
 <!doctype html>
 <html lang="en">
     <head>
@@ -89,23 +89,6 @@
             </div>
         </div>
 
-        <a href="https://github.com/frankm24" target="_blank">
-            <img
-                id="github-icon"
-                src="../assets/frank-murphy/images/github-icon.svg"
-                class="hidden-icon"
-                alt="GitHub"
-            />
-        </a>
-        <a href="https://linkedin.com/in/frank-murphy-ud" target="_blank">
-            <img
-                id="linkedin-icon"
-                src="../assets/frank-murphy/images/linkedin-icon.svg"
-                class="hidden-icon"
-                alt="LinkedIn"
-            />
-        </a>
-
         <!-- Secret Portal -->
         <div class="secret-portal" id="secret-portal">?</div>
 
@@ -170,6 +153,13 @@
                 }
                 if (ball_properties.texture !== undefined) {
                     ball_element.classList.add(ball_properties.texture);
+                }
+
+                if (ball_properties.url !== undefined) {
+                    const link_element = document.createElement("a");
+                    link_element.href = ball_properties.url;
+                    link_element.target = "_blank";
+                    ball_element.appendChild(link_element);
                 }
 
                 ball_element.style.width = ball_diameter + "px";
@@ -474,14 +464,17 @@
                 makeBouncyBall({
                     color: "",
                     texture: null,
-                    image_src: document.getElementById("github-icon").src,
+                    image_src: "../assets/frank-murphy/images/github-icon.svg",
                     invert_image: true,
+                    url: "https://github.com/frankm24",
                 });
                 makeBouncyBall({
                     color: "",
                     texture: null,
-                    image_src: document.getElementById("linkedin-icon").src,
+                    image_src:
+                        "../assets/frank-murphy/images/linkedin-icon.svg",
                     invert_image: true,
+                    url: "https://linkedin.com/in/frank-murphy-ud",
                 });
 
                 const balls = [
