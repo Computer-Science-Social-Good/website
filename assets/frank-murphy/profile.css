@@ -129,6 +129,28 @@ footer {
     overflow: hidden;
     object-fit: cover;
     z-index: 1;
+    /* filter: drop-shadow(5px 5px); */
+}
+/* .bouncy-ball.shiny {
+    background-size: cover;
+} */
+.bouncy-ball.rough {
+    background-size:
+        cover,
+        2.5px 2.5px;
+    background-image:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0) 55%
+        ),
+        repeating-radial-gradient(
+            circle,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1.5px,
+            transparent 4px
+        );
 }
 .bouncy-ball-image {
     width: 100%;
