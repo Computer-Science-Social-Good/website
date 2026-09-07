@@ -1,4 +1,4 @@
-<!-- TODO: funny arg 2, TypeScript?, fix secret rickroll, place assets in dedicated folder or personal CDN, make blinking cursor not push text off center -->
+<!-- TODO: funny arg 2, TypeScript?, fix secret rickroll, make blinking cursor not push text off center -->
 <!doctype html>
 <html lang="en">
     <head>
@@ -515,7 +515,7 @@
                     makeBouncyBall(ball_properties);
                 });
 
-                // Secret Rick Roll Portal
+                // Secret RickRoll Portal
                 const portal = document.getElementById("secret-portal");
                 const profileImg = document.querySelector(".profile-img");
 
@@ -558,6 +558,7 @@
                         `;
 
                 let isDragging = false;
+                let portalTriggered = false;
 
                 profileImg.addEventListener("mousedown", (e) => {
                     e.preventDefault(); // stop default browser ghost
@@ -601,7 +602,8 @@
                         } else {
                             portal.classList.remove("visible");
                         }
-                        if (dist < 60) {
+                        if (dist < 60 && !portalTriggered) {
+                            portalTriggered = true;
                             window.location.href =
                                 "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
                         }
