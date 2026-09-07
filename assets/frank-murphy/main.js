@@ -48,13 +48,16 @@ function makeBouncyBall(ball_properties) {
         ball_element.classList.add(ball_properties.texture);
     }
 
-    if (ball_properties.url !== undefined) {
+    if (ball_properties.url === undefined) {
+        ball_element.setAttribute("aria-hidden", "true");
+    } else {
         const link_element = document.createElement("a");
         link_element.href = ball_properties.url;
         link_element.target = "_blank";
         link_element.rel = "noopener noreferrer";
         link_element.setAttribute("aria-label", ball_properties.aria_label);
         ball_element.appendChild(link_element);
+        ball_image_el.alt = ""; // Avoids double-labelling it
     }
 
     ball_element.style.width = ball_diameter + "px";
