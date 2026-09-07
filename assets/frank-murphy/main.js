@@ -340,7 +340,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Balls
     makeBouncyBall({
         color: "",
-        texture: null,
         image_src: "../assets/frank-murphy/images/github-icon.svg",
         invert_image: true,
         url: "https://github.com/frankm24",
@@ -348,7 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     makeBouncyBall({
         color: "",
-        texture: null,
         image_src: "../assets/frank-murphy/images/linkedin-icon.svg",
         invert_image: true,
         url: "https://linkedin.com/in/frank-murphy-ud",
