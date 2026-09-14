@@ -1,0 +1,237 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+body {
+    font-family: "Silkscreen", sans-serif !important;
+    background-image:
+        radial-gradient(
+            circle at center,
+            rgba(255, 255, 0, 0.3) 0%,
+            rgba(255, 255, 0, 0.1) 30%,
+            rgba(0, 0, 0, 0.8) 100%
+        ),
+        url("../frank-murphy/images/nyan-cat-wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white !important; /* Make all text white */
+    transition: background-position 0.1s ease; /* Smooth transition for gradient updates */
+}
+.nav-container,
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(19, 52, 98) !important;
+}
+.navbar {
+    background-color: transparent !important; /* Make navbar transparent */
+    border: none !important; /* Remove any borders */
+    box-shadow: none !important; /* Remove any shadows */
+}
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: white !important; /* Set navbar text color to white */
+}
+.navbar .nav-link:hover {
+    color: yellow !important; /* Optional: Highlight on hover */
+}
+.profile-section {
+    padding-top: 100px; /* Adjust for fixed navbar */
+    padding-bottom: 60px; /* Adjust for fixed footer */
+    text-align: center;
+    color: white !important; /* Ensure all text in the profile section is white */
+}
+.profile-img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: calc(50% - 100px);
+    top: 13vh;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px yellow !important; /* Ensure yellow glow is applied */
+    cursor: grab; /* Indicate draggable element */
+}
+.profile-img:active {
+    cursor: grabbing; /* Change cursor when dragging */
+}
+h1,
+.profile-info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+h1 {
+    top: 42vh;
+    white-space: nowrap;
+}
+h1::after {
+    content: "▌";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    animation: blink 0.7s step-end infinite;
+    color: yellow;
+}
+h1.done-typing::after {
+    display: none;
+}
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+.profile-info {
+    top: 50vh;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-container {
+    background-color: transparent !important; /* Make footer container transparent */
+}
+footer {
+    background-color: transparent !important; /* Ensure footer is transparent */
+    position: absolute; /* Change position to absolute */
+    width: 100%; /* Ensure footer spans the full width */
+}
+.navbar-collapse {
+    background-color: transparent !important; /* Ensure collapsed menu is transparent */
+}
+.navbar-toggler {
+    background-color: transparent !important; /* Ensure toggler button is transparent */
+    border: none !important; /* Remove toggler button border */
+}
+.navbar-toggler-icon {
+    background-image: none !important; /* Remove default toggler icon background */
+}
+.nav-container {
+    background-color: transparent !important; /* Ensure nav-container is transparent */
+}
+.navbar .nav-link,
+.navbar .navbar-brand,
+.profile-section,
+.profile-info,
+.footer-container,
+footer {
+    color: white !important; /* Explicitly set text color to white for all sections */
+}
+.text-muted {
+    color: white !important; /* Override Bootstrap's muted text color */
+}
+.bouncy-ball {
+    display: flex;
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: 1;
+    /* filter: drop-shadow(5px 5px); */
+}
+.bouncy-ball a {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
+}
+/* .bouncy-ball.shiny {
+    background-size: cover;
+} */
+.bouncy-ball.rough {
+    background-size:
+        cover,
+        2.5px 2.5px;
+    background-image:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0) 55%
+        ),
+        repeating-radial-gradient(
+            circle,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1.5px,
+            transparent 4px
+        );
+}
+.bouncy-ball-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: ball-spin 4s linear infinite;
+}
+@keyframes ball-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.secret-portal {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-family: "Silkscreen", sans-serif;
+    font-size: 36px;
+    color: yellow;
+    opacity: 0;
+    transition:
+        opacity 0.4s ease,
+        text-shadow 0.4s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+.secret-portal.visible {
+    opacity: 1;
+    text-shadow:
+        0 0 20px yellow,
+        0 0 40px orange,
+        0 0 60px red;
+    animation: portal-pulse 1s ease-in-out infinite alternate;
+}
+@keyframes portal-pulse {
+    from {
+        text-shadow:
+            0 0 20px yellow,
+            0 0 40px orange;
+        transform: scale(1);
+    }
+    to {
+        text-shadow:
+            0 0 30px yellow,
+            0 0 60px orange,
+            0 0 80px red;
+        transform: scale(1.15);
+    }
+}
+.hint {
+    position: absolute;
+    left: calc(50% + 130px); /* next to profile img */
+    font-family: "Silkscreen", sans-serif;
+    font-size: 18px;
+    color: yellow;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(50px); /* start offset */
+    pointer-events: none;
+}
+
+/* transitions only apply when the 'animate' class is present */
+.hint.animate {
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.hint.show {
+    opacity: 1;
+    transform: translateX(0);
+}
