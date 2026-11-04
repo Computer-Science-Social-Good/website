@@ -1,495 +1,672 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Member Profile</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../index.css" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Member Profile</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../index.css" />
 
-    <style>
-      body {
-        font-family: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        background: #faf5ff;
-        color: #29134f;
-        min-height: 100vh;
-        line-height: 1.6;
-        transition: background-color 0.35s ease;
-      }
-      h1,
-      h2,
-      h3 {
-        color: #5b21b6;
-      }
-      .profile-info p,
-      .text-muted,
-      .project-card .project-info {
-        color: #3c1b6d;
-      }
-      .profile-section {
-        background: #ffffff;
-        border: 1px solid #ddd6fe;
-        border-radius: 1.25rem;
-        padding: 2rem;
-        box-shadow: 0 10px 24px rgba(120, 66, 246, 0.12);
-      }
-      .profile-img {
-        border: 3px solid #d8b4fe;
-        box-shadow: 0 8px 22px rgba(99, 102, 241, 0.22);
-      }
+		<style>
+			body {
+				font-family:
+					"Outfit",
+					system-ui,
+					-apple-system,
+					Segoe UI,
+					Roboto,
+					Helvetica,
+					Arial,
+					sans-serif;
+				background: #faf5ff;
+				color: #29134f;
+				min-height: 100vh;
+				line-height: 1.6;
+				transition: background-color 0.35s ease;
+			}
+			h1,
+			h2,
+			h3 {
+				color: #5b21b6;
+			}
+			.profile-info p,
+			.text-muted,
+			.project-card .project-info {
+				color: #3c1b6d;
+			}
+			.profile-section {
+				background: #ffffff;
+				border: 1px solid #ddd6fe;
+				border-radius: 1.25rem;
+				padding: 2rem;
+				box-shadow: 0 10px 24px rgba(120, 66, 246, 0.12);
+			}
+			.profile-img {
+				border: 3px solid #d8b4fe;
+				box-shadow: 0 8px 22px rgba(99, 102, 241, 0.22);
+			}
 
-@keyframes dance {
-  0% {
-    transform: translateX(0) rotate(0deg);
-  }
-  50% {
-    transform: translateX(20px) rotate(30deg);
-  }
-  100% {
-    transform: translateX(0) rotate(0deg);
-  }
-}
+			@keyframes dance {
+				0% {
+					transform: translateX(0) rotate(0deg);
+				}
+				50% {
+					transform: translateX(20px) rotate(30deg);
+				}
+				100% {
+					transform: translateX(0) rotate(0deg);
+				}
+			}
 
-      .nav-container,
-      .footer-container
-       {
-        display: flex;
-        justify-content: center;
-      }
-      .page-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap:wrap;
-      }
-      .navbar {
-        background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #ddd6fe 100%);
-      }
-      .navbar-brand img {
-        filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
-      }
-      .nav-link {
-        color: #f8fafd !important;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        transition: color 0.2s ease, transform 0.2s ease;
-      }
-      .nav-tabs .nav-link {
-        background: #f3e8ff;
-        border: 1px solid #c4b5fd;
-        color: #3b147d;
-        font-weight: 600;
-      }
-      .nav-tabs .nav-link.active {
-        background: linear-gradient(135deg, #a78bfa, #c4b5fd);
-        border-color: #8b5cf6;
-        color: #2c1366;
-        box-shadow: 0 4px 14px rgba(124,58,237,0.25);
-      }
-      .nav-tabs .nav-link:hover {
-        background: linear-gradient(135deg, #a78bfa, #c4b5fd);
-        border-color: #8b5cf6;
-        color: #2c1366;
-      }
-      .nav-link:hover,
-      .nav-link.active {
-        transform: translateY(-1px);
-      }
-      .btn-purple {
-        background: linear-gradient(135deg, #a78bfa, #c4b5fd);
-        border: 1px solid #8b5cf6;
-        color: #1f0f3c;
-        font-weight: 700;
-        box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25);
-        transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .btn-purple:hover,
-      .btn-purple:focus {
-        background: linear-gradient(135deg, #c4b5fd, #d8b4fe);
-        border-color: #7c3aed;
-        transform: translateY(-1px);
-        box-shadow: 0 8px 18px rgba(124, 58, 237, 0.35);
-        color: #1e0f44;
-      }
-      .btn-purple:active {
-        transform: translateY(0);
-      }
-      .intro-hero {
-        margin-top:2.5rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        align-items: center;
-        background: linear-gradient(120deg, #f3e8ff 0%, #fdf4ff 49%, #f9f5ff 100%);
-        border: 1px solid #e9d5ff;
-        border-radius: 1.25rem;
-        padding: 1.8rem;
-        padding-top:1rem;
-        margin-bottom: 1.5rem;
-        max-width: 945px;
-      }
-      .intro-content {
-        text-align: left;
-      }
-      .intro-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.4rem 0.8rem;
-        border-radius: 999px;
-        background: #ddd6fe;
-        color: #5b21b6;
-        font-weight: 700;
-        font-size: 0.9rem;
-      }
-      .intro-title {
-        font-size: clamp(1.95rem, 2.5vw, 2.8rem);
-        line-height: 1.1;
-        color: #4c1d95;
-        margin-top: 0.5rem;
-        margin-bottom: 0.8rem;
-      }
-      .intro-description {
-        color: #4f1d95;
-        max-width: 680px;
-        margin-bottom: 1rem;
-      }
-      .skill-grid {
-        display: grid;
-        grid-template-columns: repeat(2,minmax(0,1fr));
-        gap: 0.75rem;
-      }
-      .skill-card {
-        background: #fff;
-        border: 1px solid #e0c9ff;
-        border-radius: 0.75rem;
-        padding: 0.75rem;
-        box-shadow: 0 8px 18px rgba(124,58,237,0.1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .skill-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(124,58,237,0.2);
-      }
-      .skill-card h4 {
-        margin: 0;
-        font-size: 0.95rem;
-        color: #5b21b6;
-      }
-      .skill-card p {
-        margin: 0.25rem 0 0;
-        font-size: 0.85rem;
-        color: #3e1f7b;
-      }
-      .profile-section {
-        text-align: center;
-        max-width: 450px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-      .resume-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-      }
-      @media (min-width: 992px) {
-        .resume-grid {
-          grid-template-columns: 1fr 1.05fr;
-          align-items: start;
-          gap: 2rem;
-        }
-      }
-      .profile-card {
-        background: #ffffff;
-        border: 1px solid #ddd6fe;
-        border-radius: 1rem;
-        padding: 1rem;
-        box-shadow: 0 12px 26px rgba(124, 58, 237, 0.12);
-      }
-      .profile-img {
-        width: 160px;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-bottom: 15px;
-        border: 3px solid #d8b4fe;
-      }
-      .profile-info {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .profile-info {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      h1 {
-        font-family: 'Courier New', monospace;
-        color: #1e3a8a;
-        margin-bottom: 0.5rem;
-      }
-      .profile-section p {
-        font-size: 1.05rem;
-      }
-      .project-gallery {
-        padding-top: 80px; /* Adjust for fixed navbar */
-        padding-bottom: 72px; /* Adjust for fixed footer */
-      }
-      .project-actions {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 1.2rem;
-      }
-      .version-title {
-        margin-bottom: 0.75rem;
-      }
-      .project-list {
-        display: grid;
-        grid-gap: 1rem;
-      }
-      .project-card {
-        border-radius: 0.75rem;
-        overflow: hidden;
-        border: 1px solid rgba(0,0,0,.08);
-        box-shadow: 0 6px 18px rgba(0,0,0,.08);
-        background: #fff;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-      }
-      .project-card iframe {
-        width: 100%;
-        min-height: 300px;
-        border: none;
-      }
-      .project-card .project-info {
-        padding: 0.75rem;
-      }
-      .project-list:hover .project-card {
-        transform: scale(0.98);
-      }
-      .project-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 26px rgba(0,0,0,.2);
-        z-index: 10;
-      }
-      @media (min-width: 576px) {
-        .project-list {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-      @media (min-width: 992px) {
-        .project-list {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
-      .version-3 .tab-pane iframe {
-        width: 100%;
-        height: 500px;
-      }
-      .project-gallery h2,
-      .project-gallery h3 {
-        color: #1e40af;
-      }
-      .project-card .project-info {
-        padding: 0.95rem;
-        background: linear-gradient(145deg,#ffffffbf,#f0f9ffcc);
-      }
-      .project-card .project-info strong {
-        color: #1d4ed8;
-      }
-      .carousel-control-prev-icon,
-      .carousel-control-next-icon {
-        filter: invert(1) drop-shadow(0 1px 2px rgba(0,0,0,.4));
-      }
-      .tab-pane {
-        background: #ffffffcc;
-        border: 1px solid #dbeafe;
-        border-radius: 0.75rem;
-        padding: 0.5rem;
-      }
-      .footer-container {
-        justify-content: center;
-        color: #334155;
-      }
-      footer {
-        background: rgba(248, 250, 252, 0.94);
-        backdrop-filter: blur(4px);
-        border-top: 1px solid #cbd5e1;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container nav-container">
-        <a class="navbar-brand" href="../index.html">
-          <strong
-            ><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
-          /></strong>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link mx-4" href="../about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-4" href="../projects/index.html"
-                >Our Projects</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-4 active" href="../members/index.html"
-                >Our Members</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+			.nav-container,
+			.footer-container {
+				display: flex;
+				justify-content: center;
+			}
+			.page-container {
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.navbar {
+				background: linear-gradient(
+					90deg,
+					#7c3aed 0%,
+					#8b5cf6 50%,
+					#ddd6fe 100%
+				);
+			}
+			.navbar-brand img {
+				filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+			}
+			.nav-link {
+				color: #f8fafd !important;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				transition:
+					color 0.2s ease,
+					transform 0.2s ease;
+			}
+			.nav-tabs .nav-link {
+				background: #f3e8ff;
+				border: 1px solid #c4b5fd;
+				color: #3b147d;
+				font-weight: 600;
+			}
+			.nav-tabs .nav-link.active {
+				background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+				border-color: #8b5cf6;
+				color: #2c1366;
+				box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+			}
+			.nav-tabs .nav-link:hover {
+				background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+				border-color: #8b5cf6;
+				color: #2c1366;
+			}
+			.nav-link:hover,
+			.nav-link.active {
+				transform: translateY(-1px);
+			}
+			.btn-purple {
+				background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+				border: 1px solid #8b5cf6;
+				color: #1f0f3c;
+				font-weight: 700;
+				box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25);
+				transition:
+					border-color 0.2s ease,
+					transform 0.2s ease,
+					box-shadow 0.2s ease;
+			}
+			.btn-purple:hover,
+			.btn-purple:focus {
+				background: linear-gradient(135deg, #c4b5fd, #d8b4fe);
+				border-color: #7c3aed;
+				transform: translateY(-1px);
+				box-shadow: 0 8px 18px rgba(124, 58, 237, 0.35);
+				color: #1e0f44;
+			}
+			.btn-purple:active {
+				transform: translateY(0);
+			}
+			.intro-hero {
+				margin-top: 2.5rem;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1rem;
+				align-items: center;
+				background: linear-gradient(
+					120deg,
+					#f3e8ff 0%,
+					#fdf4ff 49%,
+					#f9f5ff 100%
+				);
+				border: 1px solid #e9d5ff;
+				border-radius: 1.25rem;
+				padding: 1.8rem;
+				padding-top: 1rem;
+				margin-bottom: 1.5rem;
+				max-width: 945px;
+			}
+			.intro-content {
+				text-align: left;
+			}
+			.intro-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				padding: 0.4rem 0.8rem;
+				border-radius: 999px;
+				background: #ddd6fe;
+				color: #5b21b6;
+				font-weight: 700;
+				font-size: 0.9rem;
+			}
+			.intro-title {
+				font-size: clamp(1.95rem, 2.5vw, 2.8rem);
+				line-height: 1.1;
+				color: #4c1d95;
+				margin-top: 0.5rem;
+				margin-bottom: 0.8rem;
+			}
+			.intro-description {
+				color: #4f1d95;
+				max-width: 680px;
+				margin-bottom: 1rem;
+			}
+			.skill-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 0.75rem;
+			}
+			.skill-card {
+				background: #fff;
+				border: 1px solid #e0c9ff;
+				border-radius: 0.75rem;
+				padding: 0.75rem;
+				box-shadow: 0 8px 18px rgba(124, 58, 237, 0.1);
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease;
+			}
+			.skill-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
+			}
+			.skill-card h4 {
+				margin: 0;
+				font-size: 0.95rem;
+				color: #5b21b6;
+			}
+			.skill-card p {
+				margin: 0.25rem 0 0;
+				font-size: 0.85rem;
+				color: #3e1f7b;
+			}
+			.profile-section {
+				text-align: center;
+				max-width: 450px;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+			}
+			.resume-grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1.25rem;
+			}
+			@media (min-width: 992px) {
+				.resume-grid {
+					grid-template-columns: 1fr 1.05fr;
+					align-items: start;
+					gap: 2rem;
+				}
+			}
+			.profile-card {
+				background: #ffffff;
+				border: 1px solid #ddd6fe;
+				border-radius: 1rem;
+				padding: 1rem;
+				box-shadow: 0 12px 26px rgba(124, 58, 237, 0.12);
+			}
+			.profile-img {
+				width: 160px;
+				height: 160px;
+				object-fit: cover;
+				border-radius: 50%;
+				margin-bottom: 15px;
+				border: 3px solid #d8b4fe;
+			}
+			.profile-info {
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.profile-info {
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			h1 {
+				font-family: "Courier New", monospace;
+				color: #1e3a8a;
+				margin-bottom: 0.5rem;
+			}
+			.profile-section p {
+				font-size: 1.05rem;
+			}
+			.project-gallery {
+				padding-top: 80px; /* Adjust for fixed navbar */
+				padding-bottom: 72px; /* Adjust for fixed footer */
+			}
+			.project-actions {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 10px;
+				margin-bottom: 1.2rem;
+			}
+			.version-title {
+				margin-bottom: 0.75rem;
+			}
+			.project-list {
+				display: grid;
+				grid-gap: 1rem;
+			}
+			.project-card {
+				border-radius: 0.75rem;
+				overflow: hidden;
+				border: 1px solid rgba(0, 0, 0, 0.08);
+				box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+				background: #fff;
+				transition:
+					transform 0.25s ease,
+					box-shadow 0.25s ease;
+			}
+			.project-card iframe {
+				width: 100%;
+				min-height: 300px;
+				border: none;
+			}
+			.project-card .project-info {
+				padding: 0.75rem;
+			}
+			.project-list:hover .project-card {
+				transform: scale(0.98);
+			}
+			.project-card:hover {
+				transform: scale(1.05);
+				box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+				z-index: 10;
+			}
+			@media (min-width: 576px) {
+				.project-list {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+			@media (min-width: 992px) {
+				.project-list {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+				}
+			}
+			.version-3 .tab-pane iframe {
+				width: 100%;
+				height: 500px;
+			}
+			.project-gallery h2,
+			.project-gallery h3 {
+				color: #1e40af;
+			}
+			.project-card .project-info {
+				padding: 0.95rem;
+				background: linear-gradient(145deg, #ffffffbf, #f0f9ffcc);
+			}
+			.project-card .project-info strong {
+				color: #1d4ed8;
+			}
+			.carousel-control-prev-icon,
+			.carousel-control-next-icon {
+				filter: invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+			}
+			.tab-pane {
+				background: #ffffffcc;
+				border: 1px solid #dbeafe;
+				border-radius: 0.75rem;
+				padding: 0.5rem;
+			}
+			.footer-container {
+				justify-content: center;
+				color: #334155;
+			}
+			footer {
+				background: rgba(248, 250, 252, 0.94);
+				backdrop-filter: blur(4px);
+				border-top: 1px solid #cbd5e1;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+			<div class="container nav-container">
+				<a class="navbar-brand" href="../index.html">
+					<strong
+						><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
+					/></strong>
+				</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav mx-auto">
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../about.html">About Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../volunteering/volunteering.html"
+								>Volunteering</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../projects/projects.html"
+								>Projects</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4 active" href="../members/index.html"
+								>Our Members</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-<!-- Profile Section -->
-<div class="page-container">
-  <div class="container intro-hero">
-    <div class="intro-content">
+		<!-- Profile Section -->
+		<div class="page-container">
+			<div class="container intro-hero">
+				<div class="intro-content">
+					<h1 class="intro-title">
+						Maya Perry — Building accessible, research‑driven software with
+						strong CS fundamentals.
+					</h1>
 
-      <h1 class="intro-title">Maya Perry — Building accessible, research‑driven software with strong CS fundamentals.</h1>
+					<p class="intro-description">
+						Honors CS student focused on theory, computation, and human‑centered
+						design. I blend algorithms, full‑stack development, and
+						accessibility principles to create thoughtful, scalable, and
+						inclusive digital experiences.
+					</p>
 
-      <p class="intro-description">
-        Honors CS student focused on theory, computation, and human‑centered design. I blend algorithms, full‑stack development, and accessibility principles to create thoughtful, scalable, and inclusive digital experiences.
-      </p>
+					<div class="skill-grid" aria-label="Core skills">
+						<div class="skill-card">
+							<h4>Teaching & Leadership</h4>
+							<p>
+								Delivered lectures to 80 students, supported 100+ learners, led
+								campus tours, organized hackathons.
+							</p>
+						</div>
 
-      <div class="skill-grid" aria-label="Core skills">
-        <div class="skill-card">
-          <h4>Teaching & Leadership</h4>
-          <p>Delivered lectures to 80 students, supported 100+ learners, led campus tours, organized hackathons.</p>
-        </div>
+						<div class="skill-card">
+							<h4>Algorithms & Research</h4>
+							<p>
+								Applied data structures to competitive programming; collaborated
+								on theoretical problem‑solving.
+							</p>
+						</div>
 
-        <div class="skill-card">
-          <h4>Algorithms & Research</h4>
-          <p>Applied data structures to competitive programming; collaborated on theoretical problem‑solving.</p>
-        </div>
+						<div class="skill-card">
+							<h4>Full‑Stack Development</h4>
+							<p>
+								React, TypeScript, REST APIs, FastAPI; built responsive sites
+								and interactive web applications.
+							</p>
+						</div>
 
-        <div class="skill-card">
-          <h4>Full‑Stack Development</h4>
-          <p>React, TypeScript, REST APIs, FastAPI; built responsive sites and interactive web applications.</p>
-        </div>
+						<div class="skill-card">
+							<h4>Project Execution</h4>
+							<p>
+								Coordinated events for 400+ attendees, managed interns, improved
+								judging workflows for 139 projects.
+							</p>
+						</div>
+					</div>
+				</div>
 
-        <div class="skill-card">
-          <h4>Project Execution</h4>
-          <p>Coordinated events for 400+ attendees, managed interns, improved judging workflows for 139 projects.</p>
-        </div>
-      </div>
-    </div>
+				<div class="intro-picture" aria-label="Profile concept image">
+					<div
+						style="
+							border: 3px dashed #d8b4fe;
+							border-radius: 1rem;
+							padding: 1rem;
+							text-align: center;
+							background: #fbf5ff;
+							min-height: 240px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						"
+					>
+						<span style="color: #6d28d9; font-weight: 700"
+							>Your Image Here</span
+						>
+					</div>
+					<p style="margin-top: 0.5rem; color: #5f3c96; font-size: 0.84rem">
+						Drag & drop or replace with your portrait to personalize.
+					</p>
+				</div>
+			</div>
+			<section class="container profile-section">
+				<aside class="profile-card">
+					<img
+						src="..\assets\img\MayaPerry_CSSGImage.jpeg"
+						class="profile-img rounded-circle shadow"
+						alt="Maya Perry"
+					/>
+					<h2 class="fs-4">Maya Perry</h2>
+					<p><strong>Computer Science Student, Honors</strong></p>
+					<p><strong>University of Delaware</strong> | Newark, DE</p>
+					<p><strong>Expected Graduation:</strong> May 2028</p>
+					<p>
+						<strong>Email:</strong>
+						<a href="mailto:mayarp@gmail.com">mayarp@gmail.com</a>
+					</p>
+					<p>
+						<strong>LinkedIn:</strong>
+						<a
+							href="https://linkedin.com/in/mayarperry"
+							target="_blank"
+							rel="noopener"
+							>linkedin.com/in/mayarperry</a
+						>
+					</p>
+				</aside>
+			</section>
 
-    <div class="intro-picture" aria-label="Profile concept image">
-      <div style="border: 3px dashed #d8b4fe; border-radius: 1rem; padding: 1rem; text-align: center; background: #fbf5ff; min-height: 240px; display:flex; align-items:center; justify-content:center;">
-        <span style="color:#6d28d9; font-weight:700;">Your Image Here</span>
-      </div>
-      <p style="margin-top:.5rem; color:#5f3c96; font-size:.84rem;">Drag & drop or replace with your portrait to personalize.</p>
-    </div>
-  </div>
-      <section class="container profile-section">
-          <aside class="profile-card">
-            <img src="..\assets\img\MayaPerry_CSSGImage.jpeg" class="profile-img rounded-circle shadow" alt="Maya Perry" />
-            <h2 class="fs-4">Maya Perry</h2>
-            <p><strong>Computer Science Student, Honors</strong></p>
-            <p><strong>University of Delaware</strong> | Newark, DE</p>
-            <p><strong>Expected Graduation:</strong> May 2028</p>
-            <p><strong>Email:</strong> <a href="mailto:mayarp@gmail.com">mayarp@gmail.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mayarperry" target="_blank" rel="noopener">linkedin.com/in/mayarperry</a></p>
-          </aside>
-      </section>
+			<!-- Project Gallery Section -->
+			<section class="container project-gallery">
+				<h2 class="text-center mb-4">Project Gallery</h2>
+				<!-- Version 3: Tabs with Large Iframes -->
+				<div id="version3" class="version-3">
+					<ul class="nav nav-tabs mb-3" id="projectTabs" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link active"
+								id="p1-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#p1"
+								type="button"
+								role="tab"
+								aria-controls="p1"
+								aria-selected="true"
+							>
+								excelasl
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link"
+								id="p2-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#p2"
+								type="button"
+								role="tab"
+								aria-controls="p2"
+								aria-selected="false"
+							>
+								phillyjugglers
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link"
+								id="p3-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#p3"
+								type="button"
+								role="tab"
+								aria-controls="p3"
+								aria-selected="false"
+							>
+								solitaire
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link"
+								id="p4-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#p4"
+								type="button"
+								role="tab"
+								aria-controls="p4"
+								aria-selected="false"
+							>
+								ds-game
+							</button>
+						</li>
+					</ul>
+					<div class="d-flex justify-content-end mb-2">
+						<button
+							id="openExternalBtn"
+							class="btn btn-purple"
+							type="button"
+							aria-label="Open current project in new tab"
+						>
+							Open in new tab ↗
+						</button>
+					</div>
+					<div class="tab-content">
+						<div
+							class="tab-pane fade show active"
+							id="p1"
+							role="tabpanel"
+							aria-labelledby="p1-tab"
+							data-external="https://excelasl.study"
+						>
+							<iframe
+								src="https://excelasl.study"
+								title="Technica Best Education Hack"
+								loading="lazy"
+							></iframe>
+						</div>
+						<div
+							class="tab-pane fade"
+							id="p2"
+							role="tabpanel"
+							aria-labelledby="p2-tab"
+							data-external="https://phillyareajugglers.org/"
+						>
+							<iframe
+								src="https://phillyareajugglers.org/"
+								title="Philly Jugglers"
+								loading="lazy"
+								style="min-height: 520px"
+							></iframe>
+						</div>
+						<div
+							class="tab-pane fade"
+							id="p3"
+							role="tabpanel"
+							aria-labelledby="p3-tab"
+							data-external="https://ud-s25-cisc181.github.io/final-project-honors-MeeeeRP/"
+						>
+							<iframe
+								src="https://ud-s25-cisc181.github.io/final-project-honors-MeeeeRP/"
+								title="Solitaire"
+								loading="lazy"
+								style="min-height: 540px"
+							></iframe>
+						</div>
+						<div
+							class="tab-pane fade"
+							id="p4"
+							role="tabpanel"
+							aria-labelledby="p4-tab"
+							data-external="https://frankm24.github.io/CISC220Final/"
+						>
+							<iframe
+								src="https://frankm24.github.io/CISC220Final/"
+								title="DS Game"
+								loading="lazy"
+								style="min-height: 320px"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
+		<!-- Footer -->
+		<footer class="bg-light py-3 fixed-bottom">
+			<div class="container footer-container">
+				<p class="mb-0">
+					&copy; Developed by CS + Social Good @ University of Delaware
+				</p>
+			</div>
+		</footer>
 
-      <!-- Project Gallery Section -->
-      <section class="container project-gallery">
-        <h2 class="text-center mb-4">Project Gallery</h2>
-        <!-- Version 3: Tabs with Large Iframes -->
-        <div id="version3" class="version-3">
-          <ul class="nav nav-tabs mb-3" id="projectTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="p1-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="p1" aria-selected="true">excelasl</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="p2-tab" data-bs-toggle="tab" data-bs-target="#p2" type="button" role="tab" aria-controls="p2" aria-selected="false">phillyjugglers</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="p3-tab" data-bs-toggle="tab" data-bs-target="#p3" type="button" role="tab" aria-controls="p3" aria-selected="false">solitaire</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="p4-tab" data-bs-toggle="tab" data-bs-target="#p4" type="button" role="tab" aria-controls="p4" aria-selected="false">ds-game</button>
-            </li>
-          </ul>
-          <div class="d-flex justify-content-end mb-2">
-            <button id="openExternalBtn" class="btn btn-purple" type="button" aria-label="Open current project in new tab">Open in new tab ↗</button>
-          </div>
-          <div class="tab-content">
-            <div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="p1-tab" data-external="https://excelasl.study">
-              <iframe src="https://excelasl.study" title="Technica Best Education Hack" loading="lazy"></iframe>
-            </div>
-            <div class="tab-pane fade" id="p2" role="tabpanel" aria-labelledby="p2-tab" data-external="https://phillyareajugglers.org/">
-              <iframe src="https://phillyareajugglers.org/" title="Philly Jugglers" loading="lazy" style="min-height: 520px;"></iframe>
-            </div>
-            <div class="tab-pane fade" id="p3" role="tabpanel" aria-labelledby="p3-tab" data-external="https://ud-s25-cisc181.github.io/final-project-honors-MeeeeRP/">
-              <iframe src="https://ud-s25-cisc181.github.io/final-project-honors-MeeeeRP/" title="Solitaire" loading="lazy" style="min-height: 540px;"></iframe>
-            </div>
-            <div class="tab-pane fade" id="p4" role="tabpanel" aria-labelledby="p4-tab" data-external="https://frankm24.github.io/CISC220Final/">
-              <iframe src="https://frankm24.github.io/CISC220Final/" title="DS Game" loading="lazy" style="min-height: 320px;"></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+			const openExternalBtn = document.getElementById("openExternalBtn");
+			openExternalBtn.addEventListener("click", () => {
+				const activePane = document.querySelector(".tab-pane.active");
+				const targetUrl = activePane?.getAttribute("data-external");
+				if (targetUrl) {
+					window.open(targetUrl, "_blank", "noopener");
+				}
+			});
 
-    <!-- Footer -->
-    <footer class="bg-light py-3 fixed-bottom">
-      <div class="container footer-container">
-        <p class="mb-0">
-          &copy; Developed by CS + Social Good @ University of Delaware
-        </p>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const openExternalBtn = document.getElementById('openExternalBtn');
-      openExternalBtn.addEventListener('click', () => {
-        const activePane = document.querySelector('.tab-pane.active');
-        const targetUrl = activePane?.getAttribute('data-external');
-        if (targetUrl) {
-          window.open(targetUrl, '_blank', 'noopener');
-        }
-      });
-
-      const tabs = document.querySelectorAll('#projectTabs button[data-bs-toggle="tab"]');
-      tabs.forEach(tab => {
-        tab.addEventListener('shown.bs.tab', () => {
-          const activePane = document.querySelector('.tab-pane.active');
-          const activeUrl = activePane?.getAttribute('data-external');
-          openExternalBtn.setAttribute('aria-label', `Open ${activeUrl} in new tab`);
-        });
-      });
-    </script>
-  </body>
+			const tabs = document.querySelectorAll(
+				'#projectTabs button[data-bs-toggle="tab"]',
+			);
+			tabs.forEach((tab) => {
+				tab.addEventListener("shown.bs.tab", () => {
+					const activePane = document.querySelector(".tab-pane.active");
+					const activeUrl = activePane?.getAttribute("data-external");
+					openExternalBtn.setAttribute(
+						"aria-label",
+						`Open ${activeUrl} in new tab`,
+					);
+				});
+			});
+		</script>
+	</body>
 </html>
