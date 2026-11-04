@@ -1,426 +1,436 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Member Profile</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../index.css" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Member Profile</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../index.css" />
 
-    <style>
-      body {
-        background: linear-gradient(
-          to bottom,
-          #add8e6,
-          #add8e6,
-          #a8e9dd,
-          #a8e9dd,
-          #a8e9dd,
-          #add8e6,
-          #add8e6
-        );
-        background-size: 100% 700%; /* taller gradient area */
-        animation: scrollGradient 20s linear infinite;
-      }
-      h3 {
-        margin-bottom: 15px;
-      }
-      p {
-        margin: 5px;
-      }
+		<style>
+			body {
+				background: linear-gradient(
+					to bottom,
+					#add8e6,
+					#add8e6,
+					#a8e9dd,
+					#a8e9dd,
+					#a8e9dd,
+					#add8e6,
+					#add8e6
+				);
+				background-size: 100% 700%; /* taller gradient area */
+				animation: scrollGradient 20s linear infinite;
+			}
+			h3 {
+				margin-bottom: 15px;
+			}
+			p {
+				margin: 5px;
+			}
 
-      .profile-img:hover {
-        cursor: pointer;
-      }
+			.profile-img:hover {
+				cursor: pointer;
+			}
 
-      @keyframes scrollGradient {
-        0% {
-          background-position: 0% 0%;
-        }
-        100% {
-          background-position: 0% 100%;
-        }
-      }
+			@keyframes scrollGradient {
+				0% {
+					background-position: 0% 0%;
+				}
+				100% {
+					background-position: 0% 100%;
+				}
+			}
 
-      .nav-container,
-      .footer-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .profile-section {
-        padding-top: 100px; /* Adjust for fixed navbar */
-        padding-bottom: 60px; /* Adjust for fixed footer */
-        text-align: center;
-      }
-      .profile-img {
-        width: 250px;
-        height: 250px;
-        box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2),
-          0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        object-fit: cover;
-        margin-bottom: 20px;
-      }
-      .profile-info {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .profile-img {
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-      }
-      .profile-img.visible {
-        opacity: 1;
-        transition: opacity 0.3s ease-in-out;
-      }
+			.nav-container,
+			.footer-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.profile-section {
+				padding-top: 100px; /* Adjust for fixed navbar */
+				padding-bottom: 60px; /* Adjust for fixed footer */
+				text-align: center;
+			}
+			.profile-img {
+				width: 250px;
+				height: 250px;
+				box-shadow:
+					0 14px 18px 0 rgba(0, 0, 0, 0.2),
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				object-fit: cover;
+				margin-bottom: 20px;
+			}
+			.profile-info {
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.profile-img {
+				opacity: 0;
+				transition: opacity 0.3s ease-in-out;
+			}
+			.profile-img.visible {
+				opacity: 1;
+				transition: opacity 0.3s ease-in-out;
+			}
 
-      .glow-img {
-        border: 3px solid black;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(70, 130, 180, 0.6),
-          0 0 30px rgba(70, 130, 180, 0.4), 0 0 45px rgba(70, 130, 180, 0.2);
-        transition: box-shadow 0.3s ease-in-out;
-      }
+			.glow-img {
+				border: 3px solid black;
+				border-radius: 15px;
+				box-shadow:
+					0 0 15px rgba(70, 130, 180, 0.6),
+					0 0 30px rgba(70, 130, 180, 0.4),
+					0 0 45px rgba(70, 130, 180, 0.2);
+				transition: box-shadow 0.3s ease-in-out;
+			}
 
-      .shine-wrapper {
-        position: relative;
-        display: inline-block;
-        border-radius: 15px;
-        overflow: hidden;
-      }
+			.shine-wrapper {
+				position: relative;
+				display: inline-block;
+				border-radius: 15px;
+				overflow: hidden;
+			}
 
-      .shine-wrapper::before {
-        position: absolute;
-        top: 0;
-        left: -75%;
-        z-index: 2;
-        display: block;
-        content: "";
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.3) 100%
-        );
-        transform: skewX(-25deg);
-        cursor: pointer;
-      }
+			.shine-wrapper::before {
+				position: absolute;
+				top: 0;
+				left: -75%;
+				z-index: 2;
+				display: block;
+				content: "";
+				width: 50%;
+				height: 100%;
+				background: linear-gradient(
+					to right,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.3) 100%
+				);
+				transform: skewX(-25deg);
+				cursor: pointer;
+			}
 
-      .shine-wrapper.animate-shine::before {
-        animation: shine 1s;
-      }
+			.shine-wrapper.animate-shine::before {
+				animation: shine 1s;
+			}
 
-      @keyframes shine {
-        100% {
-          left: 125%;
-        }
-      }
+			@keyframes shine {
+				100% {
+					left: 125%;
+				}
+			}
 
-      .emoji-section {
-        max-width: 300px;
-        margin-top: -50px;
-      }
-      .content-section {
-        max-width: 550px;
-        text-align: center;
-        margin-top: 30px;
-      }
-      .emoji {
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out;
-      }
-      .emoji:hover {
-        transform: scale(1.3);
-        transition: transform 0.2s ease-in-out;
-      }
-      .emoji.active {
-        transform: scale(1.3);
-        transition: transform 0.2s ease-in-out;
-      }
+			.emoji-section {
+				max-width: 300px;
+				margin-top: -50px;
+			}
+			.content-section {
+				max-width: 550px;
+				text-align: center;
+				margin-top: 30px;
+			}
+			.emoji {
+				cursor: pointer;
+				transition: transform 0.2s ease-in-out;
+			}
+			.emoji:hover {
+				transform: scale(1.3);
+				transition: transform 0.2s ease-in-out;
+			}
+			.emoji.active {
+				transform: scale(1.3);
+				transition: transform 0.2s ease-in-out;
+			}
 
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.5s ease-out forwards;
-      }
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+			.fade-in {
+				opacity: 0;
+				transform: translateY(20px);
+				animation: fadeInUp 0.5s ease-out forwards;
+			}
+			@keyframes fadeInUp {
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
 
-      .carousel-text-container {
-        position: relative;
-        height: 40px;
-        font-size: 30px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+			.carousel-text-container {
+				position: relative;
+				height: 40px;
+				font-size: 30px;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 
-      .carousel-text {
-        position: absolute;
-        opacity: 0;
-        transform: rotateX(90deg);
-        transition: all 0.8s ease;
-        font-size: 1.2rem;
-      }
+			.carousel-text {
+				position: absolute;
+				opacity: 0;
+				transform: rotateX(90deg);
+				transition: all 0.8s ease;
+				font-size: 1.2rem;
+			}
 
-      .carousel-text.active {
-        opacity: 1;
-        transform: rotateX(0deg);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container nav-container">
-        <a class="navbar-brand" href="../index.html">
-          <strong
-            ><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
-          /></strong>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link mx-4" href="../about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-4" href="../projects/index.html"
-                >Our Projects</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-4 active" href="../members/index.html"
-                >Our Members</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+			.carousel-text.active {
+				opacity: 1;
+				transform: rotateX(0deg);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+			<div class="container nav-container">
+				<a class="navbar-brand" href="../index.html">
+					<strong
+						><img src="../assets/img/logo.svg" height="20" alt="CS+SG Logo"
+					/></strong>
+				</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav mx-auto">
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../about.html">About Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../volunteering/volunteering.html"
+								>Volunteering</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4" href="../projects/projects.html"
+								>Projects</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mx-4 active" href="../members/index.html"
+								>Our Members</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-    <!-- Profile Section -->
-    <div class="container profile-section d-flex justify-content-center">
-      <div class="shine-wrapper">
-        <img
-          src="https://i.imgur.com/MgYeAMF.jpeg"
-          class="profile-img shadow glow-img"
-          alt="Aman Singh"
-        />
-      </div>
-    </div>
+		<!-- Profile Section -->
+		<div class="container profile-section d-flex justify-content-center">
+			<div class="shine-wrapper">
+				<img
+					src="https://i.imgur.com/MgYeAMF.jpeg"
+					class="profile-img shadow glow-img"
+					alt="Aman Singh"
+				/>
+			</div>
+		</div>
 
-    <div class="container emoji-section">
-      <div class="d-flex justify-content-between">
-        <div class="emoji" style="font-size: 30px" data-type="wave">👋</div>
-        <div class="emoji" style="font-size: 30px" data-type="code">💻</div>
-        <div class="emoji" style="font-size: 30px" data-type="art">🎨</div>
-        <div class="emoji" style="font-size: 30px" data-type="more">👹</div>
-      </div>
-    </div>
+		<div class="container emoji-section">
+			<div class="d-flex justify-content-between">
+				<div class="emoji" style="font-size: 30px" data-type="wave">👋</div>
+				<div class="emoji" style="font-size: 30px" data-type="code">💻</div>
+				<div class="emoji" style="font-size: 30px" data-type="art">🎨</div>
+				<div class="emoji" style="font-size: 30px" data-type="more">👹</div>
+			</div>
+		</div>
 
-    <div class="container content-section" id="content">
-      <div id="wave" class="content-block fade-in active-content">
-        <h3>Welcome!</h3>
-        <p>I'm Aman. Professional ChatGPTer, amateur programmer.</p>
-        <p>Click through the emojis to see more about me 👆</p>
-        <p>Or click the photo to see another pic of me holding something 🔀</p>
-      </div>
+		<div class="container content-section" id="content">
+			<div id="wave" class="content-block fade-in active-content">
+				<h3>Welcome!</h3>
+				<p>I'm Aman. Professional ChatGPTer, amateur programmer.</p>
+				<p>Click through the emojis to see more about me 👆</p>
+				<p>Or click the photo to see another pic of me holding something 🔀</p>
+			</div>
 
-      <div id="code" class="content-block fade-in" style="display: none">
-        <h3>Code Stuff 🧑🏽‍💻</h3>
-        <p>
-          This is a CS+SG page so I should probably include some of my code.
-        </p>
-        <p>
-          My favorite languages are Python and React. I code in those languages.
-        </p>
-        <p>
-          <!-- TODO - link my railway projects! -->
-          <a href="https://github.com/amansjot" target="_blank"
-            >https://github.com/amansjot</a
-          >
-        </p>
-      </div>
+			<div id="code" class="content-block fade-in" style="display: none">
+				<h3>Code Stuff 🧑🏽‍💻</h3>
+				<p>
+					This is a CS+SG page so I should probably include some of my code.
+				</p>
+				<p>
+					My favorite languages are Python and React. I code in those languages.
+				</p>
+				<p>
+					<!-- TODO - link my railway projects! -->
+					<a href="https://github.com/amansjot" target="_blank"
+						>https://github.com/amansjot</a
+					>
+				</p>
+			</div>
 
-      <div id="art" class="content-block fade-in" style="display: none">
-        <h3>When I'm not coding you can find me...</h3>
-        <div class="carousel-text-container">
-          <div class="carousel-text active">Napping. Always napping 💤</div>
-          <div class="carousel-text">Sipping my Brita bottle 🍼</div>
-          <div class="carousel-text">Tutoring at an ungodly hour 🧑🏽‍💻</div>
-          <div class="carousel-text">Coaxing ChatGPT into taking my classes</div>
-          <div class="carousel-text">Longboarding till I get lost 🛹</div>
-          <div class="carousel-text">Pretending to study in Daugherty 🧠</div>
-          <div class="carousel-text">Complaining about being tired 🥱</div>
-          <div class="carousel-text">Swimming (and failing butterfly) 🤿</div>
-          <div class="carousel-text">Reading till I zzz 📚</div>
-        </div>
-      </div>
+			<div id="art" class="content-block fade-in" style="display: none">
+				<h3>When I'm not coding you can find me...</h3>
+				<div class="carousel-text-container">
+					<div class="carousel-text active">Napping. Always napping 💤</div>
+					<div class="carousel-text">Sipping my Brita bottle 🍼</div>
+					<div class="carousel-text">Tutoring at an ungodly hour 🧑🏽‍💻</div>
+					<div class="carousel-text">
+						Coaxing ChatGPT into taking my classes
+					</div>
+					<div class="carousel-text">Longboarding till I get lost 🛹</div>
+					<div class="carousel-text">Pretending to study in Daugherty 🧠</div>
+					<div class="carousel-text">Complaining about being tired 🥱</div>
+					<div class="carousel-text">Swimming (and failing butterfly) 🤿</div>
+					<div class="carousel-text">Reading till I zzz 📚</div>
+				</div>
+			</div>
 
-      <div id="more" class="content-block fade-in" style="display: none">
-        <h3>More Random Facts</h3>
-        <div class="carousel-text-container" id="more-carousel">
-          <div class="carousel-text active">
-            I always have an extra snack on me 🍫
-          </div>
-          <div class="carousel-text">I'm a Friends addict ask me anything</div>
-          <div class="carousel-text">I love puzzles any kind of puzzles 🧩</div>
-          <div class="carousel-text active">I'm a lefty ✍🏽</div>
-          <div class="carousel-text">I'm a huge geography nerd 🌏</div>
-          <div class="carousel-text">I listen to music sometimes 🎵</div>
-        </div>
-      </div>
-    </div>
+			<div id="more" class="content-block fade-in" style="display: none">
+				<h3>More Random Facts</h3>
+				<div class="carousel-text-container" id="more-carousel">
+					<div class="carousel-text active">
+						I always have an extra snack on me 🍫
+					</div>
+					<div class="carousel-text">I'm a Friends addict ask me anything</div>
+					<div class="carousel-text">I love puzzles any kind of puzzles 🧩</div>
+					<div class="carousel-text active">I'm a lefty ✍🏽</div>
+					<div class="carousel-text">I'm a huge geography nerd 🌏</div>
+					<div class="carousel-text">I listen to music sometimes 🎵</div>
+				</div>
+			</div>
+		</div>
 
-    <!-- Footer -->
-    <footer class="bg-light py-3 fixed-bottom">
-      <div class="container footer-container">
-        <p class="mb-0">
-          &copy; Developed by CS + Social Good @ University of Delaware
-        </p>
-      </div>
-    </footer>
+		<!-- Footer -->
+		<footer class="bg-light py-3 fixed-bottom">
+			<div class="container footer-container">
+				<p class="mb-0">
+					&copy; Developed by CS + Social Good @ University of Delaware
+				</p>
+			</div>
+		</footer>
 
-    <script>
-      const emojis = document.querySelectorAll(".emoji");
-      const contentBlocks = document.querySelectorAll(".content-block");
+		<script>
+			const emojis = document.querySelectorAll(".emoji");
+			const contentBlocks = document.querySelectorAll(".content-block");
 
-      // Text carousel helpers
-      let artInterval;
-      const artItems = document.querySelectorAll("#art .carousel-text");
+			// Text carousel helpers
+			let artInterval;
+			const artItems = document.querySelectorAll("#art .carousel-text");
 
-      let moreInterval;
-      const moreItems = document.querySelectorAll(
-        "#more-carousel .carousel-text"
-      );
+			let moreInterval;
+			const moreItems = document.querySelectorAll(
+				"#more-carousel .carousel-text",
+			);
 
-      function startCarousel(items, currentInterval) {
-        clearInterval(currentInterval);
+			function startCarousel(items, currentInterval) {
+				clearInterval(currentInterval);
 
-        // Pick a random starting index
-        let index = Math.floor(Math.random() * items.length);
+				// Pick a random starting index
+				let index = Math.floor(Math.random() * items.length);
 
-        // Set all to inactive
-        items.forEach((item) => item.classList.remove("active"));
-        items[index].classList.add("active");
+				// Set all to inactive
+				items.forEach((item) => item.classList.remove("active"));
+				items[index].classList.add("active");
 
-        // Start interval from random point
-        const newInterval = setInterval(() => {
-          items[index].classList.remove("active");
-          index = (index + 1) % items.length;
-          items[index].classList.add("active");
-        }, 3000);
+				// Start interval from random point
+				const newInterval = setInterval(() => {
+					items[index].classList.remove("active");
+					index = (index + 1) % items.length;
+					items[index].classList.add("active");
+				}, 3000);
 
-        return newInterval;
-      }
+				return newInterval;
+			}
 
-      emojis.forEach((emoji) => {
-        emoji.addEventListener("click", () => {
-          const type = emoji.getAttribute("data-type");
+			emojis.forEach((emoji) => {
+				emoji.addEventListener("click", () => {
+					const type = emoji.getAttribute("data-type");
 
-          // Remove 'active' from all emojis
-          emojis.forEach((e) => e.classList.remove("active"));
-          emoji.classList.add("active");
+					// Remove 'active' from all emojis
+					emojis.forEach((e) => e.classList.remove("active"));
+					emoji.classList.add("active");
 
-          // Hide all content blocks
-          contentBlocks.forEach((block) => {
-            block.style.display = "none";
-            block.classList.remove("active-content");
-          });
+					// Hide all content blocks
+					contentBlocks.forEach((block) => {
+						block.style.display = "none";
+						block.classList.remove("active-content");
+					});
 
-          // Show the selected block
-          const selectedBlock = document.getElementById(type);
-          selectedBlock.style.display = "block";
-          selectedBlock.classList.add("active-content", "fade-in");
+					// Show the selected block
+					const selectedBlock = document.getElementById(type);
+					selectedBlock.style.display = "block";
+					selectedBlock.classList.add("active-content", "fade-in");
 
-          // Randomize and restart carousels
-          if (type === "art") {
-            artInterval = startCarousel(artItems, artInterval);
-          }
-          if (type === "more") {
-            moreInterval = startCarousel(moreItems, moreInterval);
-          }
-        });
-      });
+					// Randomize and restart carousels
+					if (type === "art") {
+						artInterval = startCarousel(artItems, artInterval);
+					}
+					if (type === "more") {
+						moreInterval = startCarousel(moreItems, moreInterval);
+					}
+				});
+			});
 
-      // Initialize first emoji and content
-      document
-        .querySelector(".emoji[data-type='wave']")
-        .classList.add("active");
-      document.getElementById("wave").style.display = "block";
+			// Initialize first emoji and content
+			document
+				.querySelector(".emoji[data-type='wave']")
+				.classList.add("active");
+			document.getElementById("wave").style.display = "block";
 
-      // Start hidden carousels to prep them
-      artInterval = startCarousel(artItems, artInterval);
-      moreInterval = startCarousel(moreItems, moreInterval);
+			// Start hidden carousels to prep them
+			artInterval = startCarousel(artItems, artInterval);
+			moreInterval = startCarousel(moreItems, moreInterval);
 
-      // Change the image on click
-      const profileImg = document.querySelector(".profile-img");
+			// Change the image on click
+			const profileImg = document.querySelector(".profile-img");
 
-      const imageUrls = [
-        "https://i.imgur.com/MgYeAMF.jpeg",
-        "https://i.imgur.com/Prim6X6.jpeg",
-        "https://i.imgur.com/h1jFPFN.jpeg",
-        "https://i.imgur.com/MXVH0ot.jpeg",
-        "https://i.imgur.com/IBuXiaQ.jpeg",
-        "https://i.imgur.com/fCRZ0ab.jpeg",
-        "https://i.imgur.com/yfjkfwY.jpeg",
-      ];
+			const imageUrls = [
+				"https://i.imgur.com/MgYeAMF.jpeg",
+				"https://i.imgur.com/Prim6X6.jpeg",
+				"https://i.imgur.com/h1jFPFN.jpeg",
+				"https://i.imgur.com/MXVH0ot.jpeg",
+				"https://i.imgur.com/IBuXiaQ.jpeg",
+				"https://i.imgur.com/fCRZ0ab.jpeg",
+				"https://i.imgur.com/yfjkfwY.jpeg",
+			];
 
-      let currentImageIndex = 0;
+			let currentImageIndex = 0;
 
-      const shineWrapper = document.querySelector(".shine-wrapper");
+			const shineWrapper = document.querySelector(".shine-wrapper");
 
-      profileImg.addEventListener("click", () => {
-        // Wait a bit to let the browser register the class removal
-        setTimeout(() => {
-          // Change image source
-          currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
-          profileImg.src = imageUrls[currentImageIndex];
+			profileImg.addEventListener("click", () => {
+				// Wait a bit to let the browser register the class removal
+				setTimeout(() => {
+					// Change image source
+					currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+					profileImg.src = imageUrls[currentImageIndex];
 
-          // Trigger shine animation
-          shineWrapper.classList.remove("animate-shine");
-          void shineWrapper.offsetWidth; // force reflow
-          shineWrapper.classList.add("animate-shine");
+					// Trigger shine animation
+					shineWrapper.classList.remove("animate-shine");
+					void shineWrapper.offsetWidth; // force reflow
+					shineWrapper.classList.add("animate-shine");
 
-          // Fade in the new image
-          profileImg.classList.add("visible");
-        }, 10); // slight delay for class removal to take effect
-      });
+					// Fade in the new image
+					profileImg.classList.add("visible");
+				}, 10); // slight delay for class removal to take effect
+			});
 
-      profileImg.classList.add("visible");
-    </script>
+			profileImg.classList.add("visible");
+		</script>
 
-    <script>
-    // your js here
-    </script>
+		<script>
+			// your js here
+		</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
 </html>
