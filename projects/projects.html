@@ -27,6 +27,12 @@
 				object-fit: contain;
 				padding: 2rem;
 			}
+			.card-title a:hover {
+				color: #f95ddb;
+			}
+			.card-title a {
+				color: #731ae2;
+			}
 		</style>
 	</head>
 	<body>
@@ -78,44 +84,148 @@
 		<div class="container my-5 py-5">
 			<h1 class="text-center mb-4">Projects</h1>
 			<p class="lead text-center mb-4">
-				Check out the exciting projects we've worked on throughout the semester!
+				Check out the exciting projects we've worked on and are currently
+				developing!
 			</p>
 
-			<!-- Album Section -->
-			<div class="album p-4 bg-light">
-				<div class="container">
-					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-						<div class="col">
-							<div class="card shadow-sm">
-								<img
-									src="../assets/img/nbd.jpg"
-									class="card-img-top"
-									alt="No Borders Delaware"
-								/>
-								<div class="card-body">
-									<h5 class="card-title">No Borders Delaware</h5>
-									<p class="card-text fst-italic">September 2025 - Present</p>
+			<ul class="nav nav-tabs justify-content-center mb-4" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button
+						class="nav-link active"
+						id="internship-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#internship"
+						type="button"
+						role="tab"
+						aria-controls="internship"
+						aria-selected="true"
+					>
+						Project Teams Internship Program
+					</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button
+						class="nav-link"
+						id="google-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#google"
+						type="button"
+						role="tab"
+						aria-controls="google"
+						aria-selected="false"
+					>
+						Google Developer Group
+					</button>
+				</li>
+			</ul>
 
-									<p class="card-text">
-										Full-stack application with internal backend tools for staff
-										and volunteers, with user side for reporting ICE activity,
-										requesting aid, and more.<br />Currently a WIP, more details
-										later.
-									</p>
+			<div class="tab-content">
+				<div
+					class="tab-pane fade show active"
+					id="internship"
+					role="tabpanel"
+					aria-labelledby="internship-tab"
+					tabindex="0"
+				>
+					<div class="album p-4 bg-light">
+						<div class="container">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+								<div class="col">
+									<div class="card shadow-sm">
+										<img
+											src="../assets/img/nbd.jpg"
+											class="card-img-top"
+											alt="No Borders Delaware"
+										/>
+										<div class="card-body">
+											<h5 class="card-title">No Borders Delaware</h5>
+											<p class="card-text fst-italic">
+												September 2025 - Present
+											</p>
+											<p class="card-text">
+												Full-stack application with internal backend tools for
+												staff and volunteers, with user side for reporting ICE
+												activity, requesting aid, and more.<br />Currently a
+												WIP, more details later.
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
 
-						<div class="col">
-							<div class="card shadow-sm">
-								<img
-									src="../assets/img/google-developers.svg"
-									class="card-img-top card-img-contain"
-									alt="Google Developers"
-								/>
-								<div class="card-body">
-									<h5 class="card-title">Google Dev Project Coming Soon™!</h5>
-									<p class="card-text">Description coming soon.</p>
+				<div
+					class="tab-pane fade"
+					id="google"
+					role="tabpanel"
+					aria-labelledby="google-tab"
+					tabindex="0"
+				>
+					<div class="album p-4 bg-light">
+						<div class="container">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+								<div class="col">
+									<div class="card shadow-sm">
+										<img
+											src="../assets/img/google-developers.svg"
+											class="card-img-top card-img-contain"
+											alt="Google Developers"
+										/>
+										<div class="card-body">
+											<h5 class="card-title">
+												<!-- url broken -->
+												<!-- <a href="https://www.civicconnect.net/"></a> -->
+												CivicConnect
+											</h5>
+											<p class="card-text fst-italic">Planning Stage</p>
+											<p class="card-text">
+												CivicConnect is a civic engagement platform designed to
+												make U.S. legislation easier to understand and follow.
+												It provides accessible summaries of congressional bills,
+												including their purpose, status, sponsors, policy areas,
+												and potential effects. Users can browse legislation by
+												topic, search for specific bills, explore civic
+												organizations, and create personalized congressional
+												briefings based on policy interests and elected
+												representatives. The platform aims to help people stay
+												informed about government activity without needing to
+												interpret dense legislative text.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card shadow-sm">
+										<img
+											src="../assets/img/google-developers.svg"
+											class="card-img-top card-img-contain"
+											alt="Google Developers"
+										/>
+										<div class="card-body">
+											<h5 class="card-title">
+												<a href="https://www.pectusnotebook.org/"
+													>Pectus Notebook</a
+												>
+											</h5>
+											<p class="card-text fst-italic">Planning Stage</p>
+											<p class="card-text">
+												Pectus Notebook is an educational, not-for-profit
+												resource designed to make medically supported
+												information about pectus excavatum easier to understand
+												and access. Created as a Girl Scout Gold Award project,
+												it was inspired by the founder’s own experience
+												navigating the condition and searching for reliable
+												information. The site covers treatment options such as
+												the Nuss and Ravitch procedures, physical therapy, and
+												vacuum bell therapy, with information reviewed and
+												supported by medical professionals. Its goal is to
+												educate and support people affected by pectus excavatum
+												while increasing awareness of the condition.
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
